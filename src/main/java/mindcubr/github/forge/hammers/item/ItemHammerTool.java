@@ -1,16 +1,30 @@
 package mindcubr.github.forge.hammers.item;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import lombok.Getter;
-import mindcubr.github.forge.hammers.HammerItem;
+import mindcubr.github.forge.hammers.HammerElement;
+import mindcubr.github.forge.hammers.HammersHook;
+import mindcubr.github.forge.hammers.HammersMod;
+import mindcubr.github.forge.hammers.Reference;
+import mindcubr.github.forge.hammers.register.HammerItems;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.inventory.ContainerWorkbench;
+import net.minecraft.inventory.InventoryCrafting;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
 import javax.annotation.Nonnull;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * A <b>Hammer</b> tool is used to destroy a certain range of blocks
@@ -26,30 +40,28 @@ import javax.annotation.Nonnull;
  *
  * @author mindcubr
  * @see ItemPickaxe
- * @see HammerItem
+ * @see HammerElement
  * @since 1.0.0-0.1
  */
-public class ItemHammerTool extends ItemPickaxe implements HammerItem {
+public class ItemHammerTool extends ItemPickaxe implements HammerElement {
 
     /**
-     * The exponential damage growing rate is used to calculate the
-     * maximum damage the item has.
-     * <p>By default, this value is used as base for the exponent
-     * of {@code level} used. The level is also defined by the {@link #boundary}
-     * and can be seen with {@link #getLevel()}.</p>
-     * <p>The higher the growing rate, the higher the maximum usability.<br>
-     * By default:
-     * <pre>
-     *     = damageGrowRate {@link Math#pow(double, double) pow} {@linkplain #getLevel() level}
-     * </pre>
+     * The actual growing rate exponent of basis to tenth, multiplied
+     * with a certain calculated method.
      *
      * @apiNote Non-final protected modifier for possible bytecode and/or
-     * reflection manipulation.
+     * reflection manipulation. It is highly recommended to not use a grow
+     * rate above {@code 4}.
      * @see Math#pow(double, double)
      * @see #getLevel()
      * @see #calcDamage(int)
      */
-    protected static int damageGrowRate = 3;
+    protected static double damageGrowRate = 2;
+
+    /**
+     * The damage curvature.
+     */
+    private static final double curvature = 1.1;
 
     /**
      * The bounded hammer level required for this hammer tool
@@ -79,6 +91,11 @@ public class ItemHammerTool extends ItemPickaxe implements HammerItem {
 
         //Calculate the maximum damage of this item
         setMaxDamage(calcDamage(this.radial));
+
+        String branch = "hammer_" + HammersHook.lowerAlternativeToolName(material) + '_' + getLevel();
+        setUnlocalizedName(branch);
+        setTextureName(Reference.RESOURCE_PREFIX + branch);
+        setCreativeTab(HammersMod.CREATIVE_TAB);
     }
 
     /**
@@ -87,6 +104,7 @@ public class ItemHammerTool extends ItemPickaxe implements HammerItem {
      * <p>This method is using this {@link #damageGrowRate} as key factor.
      *
      * @return The maximum damage of the item, to be returned any possibly set;
+     * @author mindcubr
      * @implNote If you want to overwrite it, you can do so.
      * @see #damageGrowRate
      * <em>{@link #ItemHammerTool See constructor}</em>.
@@ -96,8 +114,26 @@ public class ItemHammerTool extends ItemPickaxe implements HammerItem {
         ToolMaterial material = getToolMaterial();
         int crops = material.getHarvestLevel();
         int level = crops + getLevel();
-        int usages = (int) Math.pow(damageGrowRate, level);
-        return Math.max(radial * level * cubes * usages, -1);
+        double curve = Math.pow(level, curvature);
+        double base = Math.min(Math.max(10 - radial, 1), 10);
+        double multiplier = Math.pow(base, damageGrowRate);
+        return (int) (curve * cubes * multiplier);
+    }
+
+    /**
+     * Returns the amount of blocks left until the hammer destroys.
+     *
+     * @param stack the input stack to calculate
+     * @return the amount of blocks left to be destroyable.
+     */
+    public int getBlocksLeft(@Nonnull ItemStack stack) {
+        //Validate and check if item is unbreakable
+        Validate.notNull(stack);
+        if (!stack.isItemStackDamageable())
+            return -1;
+
+        //Return blocks left
+        return Math.max(getMaxDamage() - getDamage(stack), 1);
     }
 
     @Override
@@ -120,10 +156,10 @@ public class ItemHammerTool extends ItemPickaxe implements HammerItem {
             return state;
 
         //Determines the radius, off the radial length
-        final int radius = getRadial();
-        for (int x = -radius; x < radius; x++) {
-            for (int y = -radius; y < radius; y++) {
-                for (int z = -radius; z < radius; z++) {
+        final int radius = getRadial() / 2;
+        for (int x = -radius; x <= radius; x++) {
+            for (int y = -radius; y <= radius; y++) {
+                for (int z = -radius; z <= radius; z++) {
                     //Redefine the coordinates related to the iteration
                     int xPos = breakX + x, yPos = breakY + y, zPos = breakZ + z;
 
@@ -132,8 +168,9 @@ public class ItemHammerTool extends ItemPickaxe implements HammerItem {
                         continue;
 
                     //Destroy block and damage the item, if possible
-                    world.func_147480_a(xPos, yPos, zPos, true /*drop*/);
-                    damageItem(stack, player);
+                    if (world.func_147480_a(xPos, yPos, zPos, true /*drop*/)) {
+                        damageItem(stack, 1, player);
+                    }
                 }
             }
         }
@@ -143,18 +180,18 @@ public class ItemHammerTool extends ItemPickaxe implements HammerItem {
 
     /**
      * Damages the input {@code stack} based on certain conditions and
-     * values.
+     * values with the amount of input {@code damage}.
      *
      * @param stack the stack passed, not {@code null}
      */
-    public void damageItem(ItemStack stack, EntityLivingBase holder) {
+    public void damageItem(ItemStack stack, int damage, EntityLivingBase holder) {
         //Validate and check for no damage possibility
         Validate.notNull(stack);
         if (!stack.isItemStackDamageable())
             return;
 
         //Damage the item, if possible
-        stack.damageItem(1, holder);
+        stack.damageItem(damage, holder);
     }
 
 
@@ -189,7 +226,21 @@ public class ItemHammerTool extends ItemPickaxe implements HammerItem {
 
     @Override
     public void registerRecipe() {
+        Object thisRecipeRep = getRecipeRepresentative();
+        GameRegistry.addRecipe(new ItemStack(this), "ODO", "RRR", " S ",
+                'O', Blocks.obsidian, 'D', Items.diamond, 'R', thisRecipeRep, 'S', Items.stick);
 
+        /* Begin registering every level recipe combined with this instance */
+        ItemHammerLevel[] itemLevels = HammerItems.itemHammerLevels;
+        for (int n = itemLevels.length, i = 0; i < n; i++) {
+            //Get level from array and then check for concurrent bind.
+            ItemHammerLevel itemLevel = itemLevels[i];
+            if (!itemLevel.equals(this.boundary)) {
+                //The iterated level is not bound with this instance
+                ItemHammerTool equality = HammerItems.SINGLETON.findTool(itemLevel, toolMaterial);
+                GameRegistry.addRecipe(createDownUpRecipes(new ItemStack(equality), itemLevel));
+            }
+        }
     }
 
     /**
@@ -197,7 +248,8 @@ public class ItemHammerTool extends ItemPickaxe implements HammerItem {
      */
     @Override
     public void load() {
-
+        GameRegistry.registerItem(this, getBranch());
+        registerRecipe();
     }
 
     /**
@@ -215,11 +267,43 @@ public class ItemHammerTool extends ItemPickaxe implements HammerItem {
     }
 
     /**
-     * Returns this {@link #boundary} radial, that is determined
-     * by the {@linkplain #boundary} itself.
-     * <p>The radius is used to
+     * Returns the in recipe used item, to declare this special type
+     * of {@link #toolMaterial tool material}.
+     * <p>This result is either an {@link Item} or a {@link Block}.
      *
-     * @return
+     * @return the item representative
+     * @see #toolMaterial
+     * @see net.minecraft.item.Item.ToolMaterial
+     */
+    @Nonnull
+    public Object getRecipeRepresentative() {
+        switch (toolMaterial) {
+            //Diamond material
+            case EMERALD:
+                return Items.diamond;
+            //Golden material
+            case GOLD:
+                return Items.gold_ingot;
+
+            //Iron material
+            case IRON:
+                return Items.iron_ingot;
+
+            //TODO: Register new valid materials
+
+            //Anything else, wooden included
+            default:
+                return Blocks.planks;
+        }
+    }
+
+    /**
+     * Returns this {@link #boundary} {@link ItemHammerLevel#getRadial()},
+     * that is determined by the {@linkplain #boundary} itself.
+     * <p>{@link ItemHammerLevel#getRadial() Read more about the radial value}.
+     *
+     * @return the radial length of this {@linkplain #boundary}.
+     * @see ItemHammerLevel#getRadial()
      */
     public int getRadial() {
         return boundary.getRadial();
@@ -234,6 +318,140 @@ public class ItemHammerTool extends ItemPickaxe implements HammerItem {
      */
     public ToolMaterial getToolMaterial() {
         return func_150913_i();
+    }
+
+    /**
+     * Adds additional hover information for the viewer or player to see.
+     * <p>Client sided.
+     *
+     * @param stack  the itemstack to be added additional information
+     * @param player the player whom to belong this item
+     * @param info   the information list containing the lines to be
+     *               additional
+     * @param param  unknown and unimportant parameter
+     */
+    @Override
+    @SuppressWarnings("unchecked")
+    public void addInformation(ItemStack stack, EntityPlayer player, List info, boolean param) {
+        final List<String> desc = (List<String>) info;
+        Item item = stack.getItem();
+        if (item instanceof ItemHammerTool) {
+            int blocksLeft = getBlocksLeft(stack);
+            ItemHammerTool tool = (ItemHammerTool) item;
+            int thisLevel = tool.getLevel();
+            desc.add("\u00a7aLevel " + HammersHook.levelToString(tool.getLevel()));
+            desc.add("\u00a79" + tool.getRadial() + " cubic meter");
+            desc.add("\u00a79Blocks Left: \u00a77" + (blocksLeft < 0 ? "Infinite" : blocksLeft));
+
+            /* Check if current item is displayed as result within a crafting bench */
+            if (player.openContainer instanceof ContainerWorkbench) {
+                ContainerWorkbench workbench = (ContainerWorkbench) player.openContainer;
+
+                //Get workbenches output and negated compare check
+                ItemStack result = workbench.craftResult.getStackInSlot(0);
+                if (result != stack)
+                    return;
+
+                /* Iterate matrix to check for comparable tool, to determine downgrade or upgrade.*/
+                InventoryCrafting matrix = workbench.craftMatrix;
+                for (int n = matrix.getSizeInventory(), i = 0; i < n; i++) {
+                    //Get item and undefine-check
+                    ItemStack itr = matrix.getStackInSlot(i);
+                    if (itr == null)
+                        continue;
+
+                    //Get item and compare
+                    Item itmItr = itr.getItem();
+                    if (itmItr instanceof ItemHammerTool) {
+                        ItemHammerTool other = (ItemHammerTool) itmItr;
+                        int otherLevel = other.getLevel();
+                        desc.add(StringUtils.EMPTY);
+                        if (otherLevel > thisLevel) //Append downgrade info
+                            desc.add("\u00a74\u00a7lDOWNGRADE \u2193");
+                        else //Append upgrade info
+                            desc.add("\u00a7a\u00a7lUPGRADE \u2191");
+
+                        String fromLevel = HammersHook.levelToString(otherLevel);
+                        String toLevel = HammersHook.levelToString(thisLevel);
+                        desc.add(String.format("\u00a77Level %s \u21D2 Level %s", fromLevel, toLevel));
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Creates a recipe out of the {@code output}, the input {@code level} and
+     * this instance.
+     * <p>The recipe is used to e.g. upgrade or downgrade this tool instance
+     * with a certain {@link ItemHammerLevel level element item}.
+     *
+     * @param output the output of the recipe, so the up- or downgraded
+     *               tool instance in this case
+     * @param level  the {@linkplain ItemHammerLevel level item} required to access this {@code output}
+     * @return the baked recipe of both inputs
+     * @see ItemHammerLevel
+     */
+    private IRecipe createDownUpRecipes(ItemStack output, ItemHammerLevel level) {
+        final ItemHammerTool instance = this;
+        return new IRecipe() {
+            @Override
+            public boolean matches(InventoryCrafting inv, World world) {
+                //Last iterated item, that was successful
+                Item lastDefined = null;
+                int matches = 0;
+
+                //Iterate through the slots: i
+                for (int n = getRecipeSize(), i = 0; i < n; i++) {
+                    //Get stack and undefine-check
+                    ItemStack stack = inv.getStackInSlot(i);
+                    if (stack == null)
+                        continue;
+
+                    //Get item off stack and do final comparison
+                    Item item = stack.getItem();
+                    if (!Objects.equals(item, instance)
+                            && !Objects.equals(item, level))
+                        return false;
+
+                    //Do not allow twice the same items
+                    if (lastDefined == item)
+                        return false;
+
+                    //Increase the amount of matches
+                    ++matches;
+
+                    //Redefine last iterated success item to avoid multiple causes
+                    //to exist. As twice the same items, which would be illegal.
+                    lastDefined = item;
+                }
+                return matches == 2;
+            }
+
+            @Override
+            public ItemStack getCraftingResult(InventoryCrafting inv) {
+                return getRecipeOutput();
+            }
+
+            @Override
+            public int getRecipeSize() {
+                return 9;
+            }
+
+            @Override
+            public ItemStack getRecipeOutput() {
+                return output;
+            }
+        };
+    }
+
+    /**
+     * Override block destroyed event.
+     */
+    @Override
+    public boolean onBlockDestroyed(ItemStack stack, World w, Block b, int x, int y, int z, EntityLivingBase exec) {
+        return false;
     }
 
 }

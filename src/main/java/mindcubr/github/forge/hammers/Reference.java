@@ -20,6 +20,19 @@ public class Reference {
     public static final String MOD_ID = "hammers";
 
     /**
+     * The <em>resource prefix</em> is the prefix for the resource location
+     * to locate the right texture for the right {@linkplain #MOD_ID modification identifier}.
+     * <p>Generally the rsrc-prefix (Resource Prefix) is based on the
+     * {@code mod-id} and a {@code colon} as trailing with the resource path leading:
+     * <pre>
+     *     = {@link #MOD_ID} + ':' + <em>&lt;PATH_TO_RESOURCE&gt;</em>
+     * </pre>
+     *
+     * @see #MOD_ID
+     */
+    public static final String RESOURCE_PREFIX = MOD_ID + ':';
+
+    /**
      * The current version of the modification, by using
      * the <b>Semantic Versioning</b> that can be found
      * <a href="https://semver.org/">here</a>.
