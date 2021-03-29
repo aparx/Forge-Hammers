@@ -2,9 +2,10 @@
 Hammers is a **Minecraft 1.7.10 - 1.14.0** modification that adds special functionality to every miner, that wants<br>
 to break large areas at once. This modification adds new ores, machines and items to a players<br>
 daily life and world. Although it maintains high efficiency, performance and quality it keeps<br>
-improving the players game experience.<br><br>
+improving the players game experience. I want to mention, that this project is not the best I produced, as it is<br>
+just for fun but still fully documented with JavaDocs and made with quality in mind. So please do not mind<br>
+mispellings or that the code looks a bit noisy.<br><br>
 ![image](https://user-images.githubusercontent.com/47287352/112851626-744ddf80-90ab-11eb-94e2-c7b6efcfde0e.png)
-
 
 ## Hammers
 ### What is a "Hammer"?<br>
@@ -23,6 +24,24 @@ In terms of durability, every hammer has its own. The higher the level, the high
 maximum capacity of blocks destroyable and therefore its maximum damage.<br>
 The better the tool material, the higher the maximum life span of this hammer and therefore<br>
 a higher maximum damage capability.<br>
+
+## Unbreaking Ore
+As mentioned there are currently six tool materials, whereas one of them is the *Unbreaking* material.<br>
+It breaks blocks faster than a diamond pickaxe and is effective against every block material,<br>
+except Bedrock. Of course. A unbreaking hammer is crafted with *Unbreaking Ingots* that are the<br>
+result of a smelting recipe from the ore itself. The *Unbreaking Ore* is really rare, rarer than<br>
+diamonds, but can be found much easier in the *Nether* and *End* dimension, but spawns in every dimension.<br>
+By default it just spawns at heights of 5 to 20 but may vary depending on a funky randomization algorithm<br>
+and the dimension the chunk is generated in.<br>
+<br><br>
+![gif](https://i.gyazo.com/e67bcde5769979664f784a3a561ba7b8.gif)
+<br><br>
+## Party the Unbreaking
+![image](https://user-images.githubusercontent.com/47287352/112860495-25f10e80-90b4-11eb-9c8b-f52c3cb96871.png)
+<br><br>
+The Unbreaking Ingot is really strong and can be used to make any breakable item unbreakable. Forever.<br>
+This is why the Unbreaking Ore is really rare and just gives you one ingot after cooking it for so long!<br>
+But however, the *Unbreaking Ore* might be one of the most powerful ores you can find.<br>
 
 ## Leveling
 The level system of this modification is pretty simple but still very efficient.<br>
@@ -62,18 +81,4 @@ Pretty easy, have a look:<br>
 You can apply any level to a hammer, except the level it has currently equipped,<br>
 sounds logic, doesn't it?<br>
 
-## Unbreaking Ore
-I mentioned the current 6 tool materials. One of them is the *Unbreaking* material.<br>
-It breaks blocks faster than a diamond pickaxe and is effective against every block material,<br>
-except Bedrock. Of course. A unbreaking hammer is crafted with *Unbreaking Ingots* whose are the<br>
-result of a smelting recipe from the ore itself. The *Unbreaking Ore* is really rare, rarer than<br>
-diamonds, but can be found much easier in the *Nether* and *End* dimension, but spawns in every dimension.
-<br><br>
-![gif](https://i.gyazo.com/e67bcde5769979664f784a3a561ba7b8.gif)
-<br><br>
-## Party the Unbreaking
-The Unbreaking Ingot is really strong and can be used to make any breakable item unbreakable. Forever.<br>
-![image](https://user-images.githubusercontent.com/47287352/112860495-25f10e80-90b4-11eb-9c8b-f52c3cb96871.png)
-<br><br>
-This is why the Unbreaking Ore is really rare and just gives you one ingot after smelting it for so long!<br>
 
