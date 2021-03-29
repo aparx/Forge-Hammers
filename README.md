@@ -58,8 +58,18 @@ Cubic metres destroyed nearby: **5 m³**<br><br>
 ### Leveling?
 But how do you apply a level to a hammer?<br>
 Pretty easy, have a look:<br>
+![gif](https://i.gyazo.com/df513a002c4c456b59ae830e009f8303.gif)
+You can apply any level to a hammer, except the level it has currently equipped,<br>
+sounds logic, doesn't it?<br>
 
-![gif](https://i.gyazo.com/0abf97c2574ee83fbea6bdaf168992be.gif)
+## Unbreaking Ore
+I mentioned the current 6 tool materials. One of them is the *Unbreaking* material.<br>
+It breaks blocks faster than a diamond pickaxe and is effective against every block material,<br>
+except Bedrock. Of course.<br>
+A unbreaking hammer is crafted with *Unbreaking Ingots* whose are the result of a smelting<br>
+recipe from the ore itself.<br>
+The *Unbreaking Ore* is really rare, rarer than diamonds, but can be found much easier in the
+*Nether* and *End* dimension. It spawns in every dimension:
 
-
+![gif](https://i.gyazo.com/e67bcde5769979664f784a3a561ba7b8.gif)
 
