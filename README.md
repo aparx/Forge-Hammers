@@ -55,3 +55,11 @@ This is the current final level possible to reach via crafting.<br>
 Cubic metres destroyed nearby: **5 m³**<br><br>
 ![image](https://user-images.githubusercontent.com/47287352/112857220-ebd23d80-90b0-11eb-922a-f08815959d2f.png)
 
+### Leveling?
+But how do you apply a level to a hammer?<br>
+Pretty easy, have a look:<br>
+
+![gif](https://i.gyazo.com/0abf97c2574ee83fbea6bdaf168992be.gif)
+
+
+
