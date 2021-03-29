@@ -1,4 +1,4 @@
-# Introduction
+# Forge Hammers: Introduction
 Hammers is a **Minecraft 1.7.10 (+ 1.16. in the future)** modification that adds special<br>
 functionality to every miner, that wants to break large areas at once.<br>
 This modification adds new ores, machines and items to a players daily life and world.<br>
