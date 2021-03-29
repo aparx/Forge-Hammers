@@ -3,7 +3,7 @@ package mindcubr.github.forge.hammers.item;
 import cpw.mods.fml.common.registry.GameRegistry;
 import lombok.Getter;
 import mindcubr.github.forge.hammers.HammerElement;
-import mindcubr.github.forge.hammers.HammersHook;
+import mindcubr.github.forge.hammers.hook.HammersHook;
 import mindcubr.github.forge.hammers.HammersMod;
 import mindcubr.github.forge.hammers.Reference;
 import mindcubr.github.forge.hammers.register.HammerItems;
@@ -92,7 +92,9 @@ public class ItemHammerTool extends ItemPickaxe implements HammerElement {
         //Calculate the maximum damage of this item
         setMaxDamage(calcDamage(this.radial));
 
-        String branch = "hammer_" + HammersHook.lowerAlternativeToolName(material) + '_' + getLevel();
+        //Update locals
+        String strmat = HammersHook.lowerAlternativeToolName(material);
+        String branch = "hammer_" + strmat + '_' + getLevel();
         setUnlocalizedName(branch);
         setTextureName(Reference.RESOURCE_PREFIX + branch);
         setCreativeTab(HammersMod.CREATIVE_TAB);
@@ -452,6 +454,20 @@ public class ItemHammerTool extends ItemPickaxe implements HammerElement {
     @Override
     public boolean onBlockDestroyed(ItemStack stack, World w, Block b, int x, int y, int z, EntityLivingBase exec) {
         return false;
+    }
+
+    /**
+     * Equivalent to {@link #getUnlocalizedName()} as an error occurred.
+     * This equivalent is targeting the {@link #getBranch()} method,
+     * that is requiring the actual unlocalized name for its main branch
+     * return statement.
+     *
+     * @return the actual unlocalized name
+     */
+    @Nonnull
+    @Override
+    public final String getUnlocalized() {
+        return getUnlocalizedName();
     }
 
 }

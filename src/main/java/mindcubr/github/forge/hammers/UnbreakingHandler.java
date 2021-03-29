@@ -1,10 +1,9 @@
-package mindcubr.github.forge.hammers.unbreaking;
+package mindcubr.github.forge.hammers;
 
 import com.google.common.collect.Lists;
 import cpw.mods.fml.common.registry.GameRegistry;
-import mindcubr.github.forge.hammers.HammersHook;
+import mindcubr.github.forge.hammers.hook.HammersHook;
 import mindcubr.github.forge.hammers.register.HammerItems;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
@@ -16,14 +15,25 @@ import net.minecraft.world.World;
 import org.apache.commons.lang3.Validate;
 
 /**
- * No description available.
+ * The unbreaking handler is the actual recipe register for any element
+ * that is surrounded with {@link HammerItems#unbreakingIngot unbreaking ingots},
+ * within any crafting inventory with size greater or equal to <b>nine</b>.
+ * In other words, this handler is actually registering foreign and third party
+ * breakable items and stacks to be Unbreaking-applicable.
  *
  * @author mindcubr
+ * @apiNote This class contains no important information for developers but for
+ * developers working on this modification, as this class only contains <em>protected</em>
+ * <em>static</em> modified methods for safety-reasons.
  * @since 1.0.0-0.1
  */
 public class UnbreakingHandler {
 
-    private static boolean registered;
+    /**
+     * Boolean that is declared <em>True</em>, if this handler
+     * is registered.
+     */
+    public static boolean registered;
 
     /**
      * Registers this unbreaking handler and creates a recipe
@@ -32,7 +42,7 @@ public class UnbreakingHandler {
      * armor, etc.
      * <p>This method can only be invoked once.
      */
-    public static void register() {
+    protected static void register() {
         Validate.isTrue(!registered);
         registerRecipe();
         registered = true;
@@ -89,16 +99,17 @@ public class UnbreakingHandler {
             public ItemStack getCraftingResult(InventoryCrafting inv) {
                 ItemStack output = inv.getStackInSlot(center);
                 output = output.copy();
-                NBTTagCompound compound = output.getTagCompound();
-                if (compound == null)
-                    compound = new NBTTagCompound();
+
+                //Get compound of element for lore and unbreaking NBT editing
+                NBTTagCompound compound = HammersHook
+                        .ItemHook.createAbsent(output);
 
                 //Update the "Unbreakable" state of the item
                 compound.setBoolean("Unbreakable", true);
                 output.setTagCompound(compound);
 
                 //Update the lore of that item
-                HammersHook.setLore(output, Lists.newArrayList("\u00a77Forever Unbreaking"));
+                HammersHook.ItemHook.setLore(output, Lists.newArrayList("\u00a77Forever Unbreaking"));
                 output.setStackDisplayName(EnumChatFormatting.AQUA + output.getDisplayName());
                 return output;
             }

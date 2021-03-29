@@ -20,4 +20,5 @@ item.hammer_level_1.name=I. Level Element
 item.hammer_level_2.name=II. Level Element
 item.hammer_level_3.name=III. Level Element
 tile.unbreaking_ore.name=Unbreaking Ore
+item.unbreaking_ingot.name=Unbreaking Ingot
 itemGroup.hammers=Hammer Mod

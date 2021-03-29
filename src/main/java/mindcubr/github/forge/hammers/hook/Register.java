@@ -1,10 +1,9 @@
-package mindcubr.github.forge.hammers.register;
+package mindcubr.github.forge.hammers.hook;
 
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.Validate;
 
 import javax.annotation.Nonnull;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.stream.Stream;

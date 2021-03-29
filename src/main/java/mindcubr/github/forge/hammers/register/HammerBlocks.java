@@ -2,6 +2,7 @@ package mindcubr.github.forge.hammers.register;
 
 import com.google.common.collect.Lists;
 import mindcubr.github.forge.hammers.HammerElement;
+import mindcubr.github.forge.hammers.hook.Register;
 import mindcubr.github.forge.hammers.unbreaking.BlockUnbreakingOre;
 
 /**

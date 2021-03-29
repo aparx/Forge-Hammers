@@ -8,13 +8,14 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
+import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import org.apache.commons.lang3.Validate;
 
 import javax.annotation.Nonnull;
 import java.util.Random;
 
-import static mindcubr.github.forge.hammers.HammersHook.randomize;
+import static mindcubr.github.forge.hammers.hook.HammersHook.randomize;
 
 /**
  * This class is a class ore generator of the ore {@link mindcubr.github.forge.hammers.unbreaking.BlockUnbreakingOre}.
@@ -62,11 +63,9 @@ public class UnbreakingGenerator implements IWorldGenerator {
         Validate.notNull(rand);
         Validate.notNull(world);
 
-        //Check whether to generate the ore or not
-        for (int i = 0; i <= spawnChance; i++) {
-            if (!rand.nextBoolean())
-                return;
-        }
+        //Check if should spawn within the chunk, neg
+        if (!allowSpawn(rand))
+            return;
 
         int vienChance = this.vienChance;
         int vienBeginY = this.vienMaxY;
@@ -79,6 +78,7 @@ public class UnbreakingGenerator implements IWorldGenerator {
                 vienChance += 15;
                 vienBeginY += 15;
                 target = Blocks.end_stone;
+                break;
             case -1: //Nether
                 vienBeginY += 100;
                 target = Blocks.netherrack;
@@ -93,17 +93,40 @@ public class UnbreakingGenerator implements IWorldGenerator {
 
         //Loop through the spawn chance, that is also the amount
         //of possible equal ores in the same chunk
-        for (int i = 0; i < spawnChance; i++) {
-            //Random horizontal position inbetween the chunk
-            int xPos = chunkX * 16 + randomize(rand, 16);
-            int zPos = chunkZ * 16 + randomize(rand, 16);
+        int i = 0;
+        while (i++ < spawnChance && placeOreAtRandPos(generator, world, rand, chunkX,
+                chunkZ, vienMinY, height)) ;
+    }
 
-            //Random vertical position inbetween the height
-            int yPos = randomize(rand, height) + vienMinY;
-            if (!generator.generate(world, rand, xPos, yPos, zPos))
-                break;
-        }
+    boolean placeOreAtRandPos(@Nonnull WorldGenerator generator, @Nonnull World world, @Nonnull Random random,
+                              int chunkX, int chunkZ, int minY, int height) {
+        Validate.notNull(generator);
+        Validate.notNull(world);
+        Validate.notNull(random);
 
+        //Random horizontal position inbetween the chunk
+        int xPos = chunkX * 16 + randomize(random, 16);
+        int zPos = chunkZ * 16 + randomize(random, 16);
+
+        //Random vertical position inbetween the height
+        int yPos = randomize(random, height) + minY;
+        return !generator.generate(world, random, xPos, yPos, zPos);
+    }
+
+    /**
+     * Returns whether the {@code random} is returning a random boolean
+     * with value <em>True</em> the amount of repeats
+     * {@link #spawnChance chance} gives.
+     *
+     * @param random the random to determine the boolean value
+     * @return whether the spawning should occur and is therefore is <em>True</em>
+     */
+    boolean allowSpawn(final Random random) {
+        Validate.notNull(random);
+        for (int i = 0; i < 10 /* TODO set as value */; i++)
+            if (!random.nextBoolean() && i > spawnChance)
+                return false;
+        return true;
     }
 
 }

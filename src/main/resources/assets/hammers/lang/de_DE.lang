@@ -19,4 +19,5 @@ item.hammer_unbreaking_3.name=Unzerstörbarer Hammer III
 item.hammer_level_1.name=I. Level Element
 item.hammer_level_2.name=II. Level Element
 item.hammer_level_3.name=III. Level Element
+item.unbreaking_ingot.name=Unzerstörbarer Barren
 itemGroup.hammer=Hammer Mod

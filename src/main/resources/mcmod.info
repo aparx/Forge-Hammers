@@ -1,7 +1,7 @@
 [
 {
-  "modid": "Hammers",
-  "name": "Hammers Mod",
+  "modid": "hammers",
+  "name": "Mindcube's Hammers Mod",
   "description": "The hammers mod implements unique functionality to the game of survival.",
   "version": "${version}",
   "mcversion": "${mcversion}",

@@ -10,6 +10,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
 
+import javax.annotation.Nonnull;
+
 /**
  * No description available.
  *
@@ -54,6 +56,20 @@ public class ItemUnbreakingIngot extends Item implements HammerElement {
      */
     public static ToolMaterial registerMaterial() {
         return EnumHelper.addToolMaterial("UNBREAKING", 5, 5, 4.0F, 3.0F, 1);
+    }
+
+    /**
+     * Equivalent to {@link #getUnlocalizedName()} as an error occurred.
+     * This equivalent is targeting the {@link #getBranch()} method,
+     * that is requiring the actual unlocalized name for its main branch
+     * return statement.
+     *
+     * @return the actual unlocalized name
+     */
+    @Nonnull
+    @Override
+    public final String getUnlocalized() {
+        return getUnlocalizedName();
     }
 
 }

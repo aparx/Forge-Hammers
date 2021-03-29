@@ -4,7 +4,6 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
-import mindcubr.github.forge.hammers.unbreaking.UnbreakingHandler;
 import mindcubr.github.forge.hammers.unbreaking.generation.UnbreakingGenerator;
 import mindcubr.github.forge.hammers.item.ItemHammerLevel;
 import mindcubr.github.forge.hammers.item.ItemHammerTool;

@@ -10,10 +10,15 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
 import java.util.Objects;
 
 /**
- * No description available.
+ * The Hammers' Level Item, that can be used to upgrade or
+ * downgrade any {@link ItemHammerTool}.
+ * <p>This leveling system is also applied to every tools instance
+ * of different materials and levels, whose boundary is set to a particular
+ * instance of this, to determine a possibility in leveling up and down.
  *
  * @author mindcubr
  * @since 1.0.0-0.1
@@ -110,6 +115,20 @@ public final class ItemHammerLevel extends Item implements HammerElement {
     @Override
     public int hashCode() {
         return Objects.hash(level);
+    }
+
+    /**
+     * Equivalent to {@link #getUnlocalizedName()} as an error occurred.
+     * This equivalent is targeting the {@link #getBranch()} method,
+     * that is requiring the actual unlocalized name for its main branch
+     * return statement.
+     *
+     * @return the actual unlocalized name
+     */
+    @Nonnull
+    @Override
+    public final String getUnlocalized() {
+        return getUnlocalizedName();
     }
 
 }

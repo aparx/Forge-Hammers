@@ -3,9 +3,9 @@ package mindcubr.github.forge.hammers.unbreaking;
 import com.google.common.collect.Lists;
 import cpw.mods.fml.common.registry.GameRegistry;
 import mindcubr.github.forge.hammers.HammerElement;
-import mindcubr.github.forge.hammers.HammersHook;
 import mindcubr.github.forge.hammers.HammersMod;
 import mindcubr.github.forge.hammers.Reference;
+import mindcubr.github.forge.hammers.hook.HammersHook;
 import mindcubr.github.forge.hammers.item.ItemUnbreakingIngot;
 import mindcubr.github.forge.hammers.register.HammerItems;
 import net.minecraft.block.Block;
@@ -14,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -74,7 +75,8 @@ public final class BlockUnbreakingOre extends Block implements HammerElement {
     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
         Random random = ThreadLocalRandom.current();
         ItemStack[] drops = new ItemStack[fortune + 1];
-        for (int n = HammersHook.randomize(random, drops.length), i = 0; i < n; i++) {
+        int quantity = quantityDropped(metadata, fortune, random);
+        for (int i = 0; i < quantity; i++) {
             drops[i] = new ItemStack(HammerItems.unbreakingIngot);
         }
         return Lists.newArrayList(drops);
@@ -92,8 +94,36 @@ public final class BlockUnbreakingOre extends Block implements HammerElement {
      */
     @Override
     public Item getItemDropped(int meta, Random random, int fortune) {
-        return new ItemStack(HammerItems.unbreakingIngot,
-                HammersHook.randomize(random, fortune + 1)).getItem();
+        //Get quantity and return the new stack
+        int quantity = quantityDropped(meta, fortune, random);
+        return new ItemStack(HammerItems.unbreakingIngot, quantity).getItem();
+    }
+
+    /**
+     * Returns the quantity of amount of to be dropped items,
+     * calculated by using the {@code fortune} level and {@code random}.
+     *
+     * @param fortune the fortune level
+     * @param random  the randomization
+     * @return the quantity to be dropped
+     */
+    @Override
+    public int quantityDroppedWithBonus(int fortune, Random random) {
+        return HammersHook.randomize(random, fortune + 1);
+    }
+
+    /**
+     * Equivalent to {@link #getUnlocalizedName()} as an error occurred.
+     * This equivalent is targeting the {@link #getBranch()} method,
+     * that is requiring the actual unlocalized name for its main branch
+     * return statement.
+     *
+     * @return the actual unlocalized name
+     */
+    @Nonnull
+    @Override
+    public final String getUnlocalized() {
+        return getUnlocalizedName();
     }
 
 }

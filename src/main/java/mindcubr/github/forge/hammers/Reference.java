@@ -33,12 +33,12 @@ public class Reference {
     public static final String RESOURCE_PREFIX = MOD_ID + ':';
 
     /**
-     * The current version of the modification, by using
-     * the <b>Semantic Versioning</b> that can be found
+     * The current version display of this modification, by using
+     * the <b>Semantic Versioning</b>, that can be found
      * <a href="https://semver.org/">here</a>.
      *
      * @see <a href="https://semver.org/">https://semver.org/</a>
      */
-    public static final String MOD_VERSION = "1.0.0-0.1";
+    public static final String MOD_VERSION = "1.0.0-alpha";
 
 }
