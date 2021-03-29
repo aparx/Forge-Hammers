@@ -24,3 +24,33 @@ maximum capacity of blocks destroyable and therefore its maximum damage.<br>
 The better the tool material, the higher the maximum life span of this hammer and therefore<br>
 a higher maximum damage capability.<br>
 
+## Leveling
+The level system of this modification is pretty simple but still very efficient.<br>
+At the moment there are 3 levels existing, that will take a part of the declaration<br>
+of a hammers life span, so maximum durability or so called "damage".<br>
+This is not the only thing a Level can change for a hammer.<br>
+The higher the level, the more blocks it destroys nearby a destroyed block center.<br>
+There is a basic mathematical expression to calculate the cubic metres destroyed around<br>
+a center using leveling:
+```math
+Cubic metres = 3 + (Level - 1)
+```
+> The higher the level, the more durability a hammer has and the more blocks it destroys
+> around any block center, as soon as the centered block is destroyed.
+
+### Level I
+This is the default base Level a hammer has. If no upgrade is applied to a hammer,<br>
+the default Level is set to this one.<br>
+Cubic metres destroyed nearby: **3 m³**<br><br>
+![image](https://user-images.githubusercontent.com/47287352/112855809-787bfc00-90af-11eb-8055-0a8e630cddca.png)
+<br><br>
+### Level II
+This level is an upgrade to `Level I`.<br>
+Cubic metres destroyed nearby: **4 m³**<br><br>
+![image](https://user-images.githubusercontent.com/47287352/112855963-9fd2c900-90af-11eb-883a-af6f63e8b3ae.png)
+<br><br>
+### Level III
+This level is an upgrade to `Level II`.<br>
+This is the current final level possible to reach via crafting.<br>
+Cubic metres destroyed nearby: **5 m³**<br><br>
+![image](https://user-images.githubusercontent.com/47287352/112855963-9fd2c900-90af-11eb-883a-af6f63e8b3ae.png)
