@@ -59,10 +59,10 @@ Cubic metres = 3 + (Level - 1)
 > around any block center, as soon as the centered block is destroyed.
 
 ## Leveling on Hammers
-But how do you apply a level to a hammer?<br>
-Pretty easy, have a look:<br>
 ![gif](https://i.gyazo.com/df513a002c4c456b59ae830e009f8303.gif)
 <br><br>
+As you can see, applying a **Level** to a hammer is pretty simple.<br>
+The order of the different required recipe items does not matter.<br>
 You can apply any level to a hammer, except the level it has currently equipped,<br>
 sounds logic, doesn't it?<br>
 
