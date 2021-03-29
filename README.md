@@ -58,6 +58,14 @@ Cubic metres = 3 + (Level - 1)
 > The higher the level, the more durability a hammer has and the more blocks it destroys
 > around any block center, as soon as the centered block is destroyed.
 
+## Leveling on Hammers
+But how do you apply a level to a hammer?<br>
+Pretty easy, have a look:<br>
+![gif](https://i.gyazo.com/df513a002c4c456b59ae830e009f8303.gif)
+<br><br>
+You can apply any level to a hammer, except the level it has currently equipped,<br>
+sounds logic, doesn't it?<br>
+
 ## Level I
 This is the default base Level a hammer has. If no upgrade is applied to a hammer,<br>
 the default Level is set to this one.<br>
@@ -74,12 +82,5 @@ This level is an upgrade to `Level II`.<br>
 This is the current final level possible to reach via crafting.<br>
 Cubic metres destroyed nearby: **5 m³**<br><br>
 ![image](https://user-images.githubusercontent.com/47287352/112857220-ebd23d80-90b0-11eb-922a-f08815959d2f.png)
-
-## Leveling on Hammers
-But how do you apply a level to a hammer?<br>
-Pretty easy, have a look:<br>
-![gif](https://i.gyazo.com/df513a002c4c456b59ae830e009f8303.gif)
-You can apply any level to a hammer, except the level it has currently equipped,<br>
-sounds logic, doesn't it?<br>
 
 
