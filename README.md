@@ -1,5 +1,5 @@
 # Introduction
-Hammers is a **Minecraft 1.7.10 - 1.14.0** modification that adds special functionality to every miner, that wants<br>
+Hammers is a **Minecraft 1.7.10 (+ 1.16. in the future)** modification that adds special functionality to every miner, that wants<br>
 to break large areas at once. This modification adds new ores, machines and items to a players<br>
 daily life and world. Although it maintains high efficiency, performance and quality it keeps<br>
 improving the players game experience. I want to mention, that this project is not the best I produced, as it is<br>
