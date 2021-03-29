@@ -86,7 +86,7 @@ public class ItemHammerTool extends ItemPickaxe implements HammerElement {
         super(Validate.notNull(material));
         Validate.notNull(level);
         this.boundary = level;
-        this.radial = getRadial();              //Changes to value at RT won't apply anymore TODO
+        this.radial = getRadial();              //Changes to value at RT won't apply anymore
         this.cubes = radial * radial * radial;  //Calculation of the cubes involved
 
         //Calculate the maximum damage of this item

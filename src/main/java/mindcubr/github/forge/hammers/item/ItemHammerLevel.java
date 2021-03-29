@@ -5,12 +5,15 @@ import lombok.Getter;
 import mindcubr.github.forge.hammers.HammerElement;
 import mindcubr.github.forge.hammers.HammersMod;
 import mindcubr.github.forge.hammers.Reference;
+import mindcubr.github.forge.hammers.register.HammerItems;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -49,9 +52,11 @@ public final class ItemHammerLevel extends Item implements HammerElement {
 
     @Override
     public final void registerRecipe() {
-        GameRegistry.addRecipe(new ItemStack(this), "ORO", "RRR", "DDD",
-                'O', Blocks.obsidian, 'D', Blocks.diamond_block, 'R', getRecipeRepresentative());
+        GameRegistry.addRecipe(new ItemStack(this), "ORO", "RVR", "DRD",
+                'O', Blocks.obsidian, 'D', Blocks.diamond_block, 'R', getRecipeRepresentative(), 'V',
+                getRecipeRequirement());
     }
+
 
     /**
      * @implNote This method is loading this {@link #registerRecipe() recipes}.
@@ -71,8 +76,7 @@ public final class ItemHammerLevel extends Item implements HammerElement {
      * @return the resulting radius, based on this {@link #level}
      * @apiNote This method is existent and not a finalised private modified field
      * that caches the radial value, as changing the level or overriding would not apply
-     * to runtime anymore. JIT will do its work here.
-     * TODO: fact check
+     * to runtime anymore.
      */
     public int getRadial() {
         return 3 + level - 1;
@@ -104,6 +108,22 @@ public final class ItemHammerLevel extends Item implements HammerElement {
         }
     }
 
+    /**
+     * Representative requirement as item stack required for the crafting
+     * upgrade.
+     *
+     * @return the recipe requirement
+     */
+    private Object getRecipeRequirement() {
+        int max = HammerItems.itemHammerLevels.length;
+
+        //Return planks as default requirement
+        if (level <= 1 || level > max)
+            return Blocks.planks;
+
+        return HammerItems.itemHammerLevels[level - 2];
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -129,6 +149,13 @@ public final class ItemHammerLevel extends Item implements HammerElement {
     @Override
     public final String getUnlocalized() {
         return getUnlocalizedName();
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List desc, boolean param) {
+        int cubicMetres = getRadial();
+        desc.add("\u00a79Sets a hammers cubic radius");
+        desc.add("\u00a79to \u00a77" + cubicMetres + " \u00a79cubic metres");
     }
 
 }

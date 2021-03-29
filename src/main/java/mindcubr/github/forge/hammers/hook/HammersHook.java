@@ -114,7 +114,6 @@ public class HammersHook {
      * as the actual <em>Diamond</em> tool is {@link net.minecraft.item.Item.ToolMaterial#EMERALD}.
      * <p>The returning result is either diamond, if input is {@linkplain net.minecraft.item.Item.ToolMaterial#EMERALD},
      * or the lower enum name of the input material.
-     * TODO fact check
      *
      * @param material the material to be possibly named differently
      * @return the alternate named {@code material}

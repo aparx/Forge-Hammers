@@ -50,7 +50,7 @@ public class HammersMod {
      *     <li>Iron</li>
      *     <li>Gold</li>
      *     <li>Diamond</li>
-     *     <li>Unbreaking TODO</li>
+     *     <li>Unbreaking</li>
      * </ul>
      *
      * @see net.minecraft.item.Item.ToolMaterial
