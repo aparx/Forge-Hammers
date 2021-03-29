@@ -27,6 +27,7 @@ The better the tool material, the higher the maximum life span of this hammer an
 a higher maximum damage capability.<br>
 
 ## Unbreaking Ore
+<img align="right" src="https://i.gyazo.com/e67bcde5769979664f784a3a561ba7b8.gif">
 As mentioned there are currently six tool materials, whereas one of them is the *Unbreaking* material.<br>
 It breaks blocks faster than a diamond pickaxe and is effective against every block material,<br>
 except Bedrock. Of course. A unbreaking hammer is crafted with *Unbreaking Ingots* that are the<br>
@@ -35,7 +36,6 @@ diamonds, but can be found much easier in the *Nether* and *End* dimension, but 
 By default it just spawns at heights of 5 to 20 but may vary depending on a funky randomization algorithm<br>
 and the dimension the chunk is generated in.<br>
 <br><br>
-![gif](https://i.gyazo.com/e67bcde5769979664f784a3a561ba7b8.gif)
 <br><br>
 ## Party the Unbreaking
 ![image](https://user-images.githubusercontent.com/47287352/112860495-25f10e80-90b4-11eb-9c8b-f52c3cb96871.png)
