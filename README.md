@@ -42,15 +42,16 @@ Cubic metres = 3 + (Level - 1)
 This is the default base Level a hammer has. If no upgrade is applied to a hammer,<br>
 the default Level is set to this one.<br>
 Cubic metres destroyed nearby: **3 m³**<br><br>
-![image](https://user-images.githubusercontent.com/47287352/112855809-787bfc00-90af-11eb-8055-0a8e630cddca.png)
+![image](https://user-images.githubusercontent.com/47287352/112857096-cc3b1500-90b0-11eb-9f8a-8c49f4749310.png)
 <br><br>
 ### Level II
 This level is an upgrade to `Level I`.<br>
 Cubic metres destroyed nearby: **4 m³**<br><br>
-![image](https://user-images.githubusercontent.com/47287352/112855963-9fd2c900-90af-11eb-883a-af6f63e8b3ae.png)
+![image](https://user-images.githubusercontent.com/47287352/112857155-d9580400-90b0-11eb-8841-ec3b00502a2d.png)
 <br><br>
 ### Level III
 This level is an upgrade to `Level II`.<br>
 This is the current final level possible to reach via crafting.<br>
 Cubic metres destroyed nearby: **5 m³**<br><br>
-![image](https://user-images.githubusercontent.com/47287352/112855963-9fd2c900-90af-11eb-883a-af6f63e8b3ae.png)
+![image](https://user-images.githubusercontent.com/47287352/112857220-ebd23d80-90b0-11eb-922a-f08815959d2f.png)
+
