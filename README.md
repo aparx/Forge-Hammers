@@ -43,7 +43,7 @@ The Unbreaking Ingot is really strong and can be used to make any breakable item
 This is why the Unbreaking Ore is really rare and just gives you one ingot after cooking it for so long!<br>
 But however, the *Unbreaking Ore* might be one of the most powerful ores you can find.<br>
 
-## Leveling
+# Leveling
 The level system of this modification is pretty simple but still very efficient.<br>
 At the moment there are 3 levels existing, that will take a part of the declaration<br>
 of a hammers life span, so maximum durability or so called "damage".<br>
@@ -57,24 +57,24 @@ Cubic metres = 3 + (Level - 1)
 > The higher the level, the more durability a hammer has and the more blocks it destroys
 > around any block center, as soon as the centered block is destroyed.
 
-### Level I
+## Level I
 This is the default base Level a hammer has. If no upgrade is applied to a hammer,<br>
 the default Level is set to this one.<br>
 Cubic metres destroyed nearby: **3 m³**<br><br>
 ![image](https://user-images.githubusercontent.com/47287352/112857096-cc3b1500-90b0-11eb-9f8a-8c49f4749310.png)
 <br><br>
-### Level II
+## Level II
 This level is an upgrade to `Level I`.<br>
 Cubic metres destroyed nearby: **4 m³**<br><br>
 ![image](https://user-images.githubusercontent.com/47287352/112857155-d9580400-90b0-11eb-8841-ec3b00502a2d.png)
 <br><br>
-### Level III
+## Level III
 This level is an upgrade to `Level II`.<br>
 This is the current final level possible to reach via crafting.<br>
 Cubic metres destroyed nearby: **5 m³**<br><br>
 ![image](https://user-images.githubusercontent.com/47287352/112857220-ebd23d80-90b0-11eb-922a-f08815959d2f.png)
 
-### Leveling on Hammers
+## Leveling on Hammers
 But how do you apply a level to a hammer?<br>
 Pretty easy, have a look:<br>
 ![gif](https://i.gyazo.com/df513a002c4c456b59ae830e009f8303.gif)
