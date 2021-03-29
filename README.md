@@ -12,7 +12,8 @@ A hammer is an craftable item within Minecraft, that is behaving like a pickaxe 
 but still adds functionality to the gameplay, as it destroys blocks nearby the breaking center<br>
 at a given radius, that is determined by the **Level** of the hammer.<br>
 At the moment, there are 6 tool materials, that a hammer can exist of:<br>
-> *Wood*, *Stone*, *Gold*, *Iron*, *Diamond* and *Unbreaking*.
+> *Wood*, *Stone*, *Gold*, *Iron*, *Diamond* and *Unbreaking*.<br>
+
 These tool materials, except unbreaking, are representing the default pickaxe<br>
 behaviour related to their material. In other words, a *wooden hammer* is as effective<br>
 as a wooden pickaxe, in terms of the amount of time it takes to destory the block in the center<br>
