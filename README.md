@@ -35,8 +35,13 @@ You can craft the named tool materials as follows. Please read the [#Leveling](h
 how leveling works and [#Unbreaking Ore](https://github.com/mindcubr/Forge-Hammers/edit/master/README.md#Unbreaking%20Ore) and [#Party The Unbreaking](https://github.com/mindcubr/Forge-Hammers/edit/master/README.md#Party%20the%20Unbreaking) to understand the Unbreaking Ore<br>
 and its ingots. Remember, that the default Level of all hammers is the first (Level I), when crafted.<br>
 If you do not understand the materials or items used, just read further within this Readme and come back.<br><br>
-![image](https://user-images.githubusercontent.com/47287352/112943131-604cc100-9131-11eb-9801-d26331c719fd.png)
-![image](https://user-images.githubusercontent.com/47287352/112943174-7195cd80-9131-11eb-85a6-b50f4db9d570.png)
+![wooden](https://user-images.githubusercontent.com/47287352/112945338-73ad5b80-9134-11eb-99c0-f3a4380ae006.png)
+![stone](https://user-images.githubusercontent.com/47287352/112945351-760fb580-9134-11eb-8b1d-73f271fa9a7a.png)
+![iron](https://user-images.githubusercontent.com/47287352/112945358-7740e280-9134-11eb-831d-166984ba7d45.png)
+![gold](https://user-images.githubusercontent.com/47287352/112945365-79a33c80-9134-11eb-8a3f-af63bb0d9865.png)
+![diamond](https://user-images.githubusercontent.com/47287352/112945374-7dcf5a00-9134-11eb-80f6-06aa039b8860.png)
+![unbreaking](https://user-images.githubusercontent.com/47287352/112945379-7f008700-9134-11eb-931e-8d7fdb6e1408.png)
+
 
 
 
