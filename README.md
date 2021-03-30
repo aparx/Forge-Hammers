@@ -1,5 +1,5 @@
 # Forge Hammers: Introduction
-![image]("https://user-images.githubusercontent.com/47287352/112851626-744ddf80-90ab-11eb-94e2-c7b6efcfde0e.png")<br>
+<br>
 Hammers is a **Minecraft 1.7.10 (+ 1.16. in the future)** modification that adds special<br>
 functionality to every miner, that wants to break large areas at once.<br>
 This modification adds new ores, machines and items to a players daily life and world.<br>
@@ -7,6 +7,10 @@ Although it maintains high efficiency, performance and quality it keeps improvin
 I want to mention, that this project is not the best I produced, as it is<br>
 just for fun but still fully documented with JavaDocs and made with quality in mind. So please do not mind<br>
 mispellings or that the code looks a bit noisy.<br>
+This modification is compatible with the most modifications for Minecraft, as it<br>
+is made with independence in mind, without any library required, except Forge.<br><br>
+
+![image](https://user-images.githubusercontent.com/47287352/112938929-e44f7a80-912a-11eb-9773-81b44697800a.png)
 
 ## Hammers
 ### What is a "Hammer"?<br>
@@ -25,6 +29,13 @@ In terms of durability, every hammer has its own. The higher the level, the high
 maximum capacity of blocks destroyable and therefore its maximum damage.<br>
 The better the tool material, the higher the maximum life span of this hammer and therefore<br>
 a higher maximum damage capability.<br>
+
+### Crafting Recipes
+You can craft the named tool materials as follows. Please read the #Leveling part to understand<br>
+how leveling works and #Unbreaking Ore and #Party the Unbreaking to understand the Unbreaking Ore<br>
+and its ingots. Remember, that the default Level of all hammers is the first (Level I), when crafted.<br>
+If you do not understand the materials or items used, just read further within this Readme and come back.<br>
+
 
 ## Unbreaking Ore
 As mentioned there are currently six tool materials, whereas one of them is the *Unbreaking* material.<br>
