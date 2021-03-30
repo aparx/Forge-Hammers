@@ -61,6 +61,7 @@ and the dimension the chunk is generated in.<br>
 The Unbreaking Ingot is really strong and can be used to make any breakable item unbreakable. Forever.<br>
 This is why the Unbreaking Ore is really rare and just gives you one ingot after cooking it for so long!<br>
 But however, the *Unbreaking Ore* might be one of the most powerful ores you can find.<br>
+The Unbreaking Ingot works with **every** breakable item, even from third party modifications.<br>
 
 # Leveling
 The level system of this modification is pretty simple but still very efficient.<br>
