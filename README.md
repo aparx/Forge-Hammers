@@ -1,5 +1,6 @@
 # Forge Hammers: Introduction
 <br>
+<img src="https://user-images.githubusercontent.com/47287352/112939879-87ed5a80-912c-11eb-8ec7-1e0c2125dea8.png" align="left" width="87px"></img>
 Hammers is a **Minecraft 1.7.10 (+ 1.16. in the future)** modification that adds special<br>
 functionality to every miner, that wants to break large areas at once.<br>
 This modification adds new ores, machines and items to a players daily life and world.<br>
@@ -41,7 +42,8 @@ If you do not understand the materials or items used, just read further within t
 As mentioned there are currently six tool materials, whereas one of them is the *Unbreaking* material.<br>
 It breaks blocks faster than a diamond pickaxe and is effective against every block material,<br>
 except Bedrock. Of course. A unbreaking hammer is crafted with *Unbreaking Ingots* that are the<br>
-result of a smelting recipe from the ore itself. The *Unbreaking Ore* is really rare, rarer than<br>
+result of a smelting recipe from the ore itself. The *Unbreaking Ore* is really rare, rarer than<br>![Unbenannt-1](https://user-images.githubusercontent.com/47287352/112939348-9a1ac900-912b-11eb-911e-1d0b17c6788a.png)
+
 diamonds, but can be found much easier in the *Nether* and *End* dimension, but spawns in every dimension.<br>
 By default it just spawns at heights of 5 to 20 but may vary depending on a funky randomization algorithm<br>
 and the dimension the chunk is generated in.<br>
