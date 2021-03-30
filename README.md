@@ -45,10 +45,6 @@ If you do not understand the materials or items used, just read further within t
 ![unbreaking](https://user-images.githubusercontent.com/47287352/112946679-1b775900-9136-11eb-9644-df9fb41efa53.png)
 
 
-
-
-
-
 ## Unbreaking Ore
 As mentioned there are currently six tool materials, whereas one of them is the *Unbreaking* material.<br>
 It breaks blocks faster than a diamond pickaxe and is effective against every block material,<br>
