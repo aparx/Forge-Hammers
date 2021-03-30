@@ -1,5 +1,5 @@
 # Forge Hammers: Introduction
-<img src="https://user-images.githubusercontent.com/47287352/112940993-380f9300-912e-11eb-889a-417078050f9e.png" align="left" width="76px"></img>
+<img src="https://user-images.githubusercontent.com/47287352/112940993-380f9300-912e-11eb-889a-417078050f9e.png" align="left" width="80px"></img>
 Hammers is a **Minecraft 1.7.10 (+ 1.16. in the future)** modification that adds special
 functionality to every miner, that wants to break large areas at once.
 This modification adds new ores, machines and items to a players daily life and world.
@@ -7,7 +7,7 @@ Although it maintains high efficiency, performance and quality it keeps improvin
 I want to mention, that this project is not the best I produced, as it is just for fun but still fully documented
 with JavaDocs and made with quality in mind. So please do not mind mispellings or that the code looks a bit noisy.
 This modification is compatible with the most modifications for Minecraft, as it
-is made with independence in mind, without any library required, except Forge.<br>
+is made with independence in mind, without any library required, except Forge.<br><br>
 <a href="https://github.com/mindcubr/Forge-Hammers/releases/tag/1.0.1-alpha"><img src="https://img.shields.io/badge/-download_latest-blue?style=for-the-badge&logo=flipboard"></img></a>
 <br><br>
 ![image](https://user-images.githubusercontent.com/47287352/112938929-e44f7a80-912a-11eb-9773-81b44697800a.png)
