@@ -30,7 +30,7 @@ maximum capacity of blocks destroyable and therefore its maximum damage.<br>
 The better the tool material, the higher the maximum life span of this hammer and therefore<br>
 a higher maximum damage capability.<br>
 
-![gif](https://i.gyazo.com/407d0b008d6a20f5701f080fc0432629.gif)
+![gif](https://i.gyazo.com/e80bda161c94f4b1be304843cb9c10d7.gif)
 
 ### Hammer Recipes
 You can craft the named tool materials as follows. Please read the [#Leveling](https://github.com/mindcubr/Forge-Hammers/blob/master/README.md#Leveling) part to understand<br>
