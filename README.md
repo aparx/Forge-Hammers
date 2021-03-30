@@ -30,7 +30,7 @@ maximum capacity of blocks destroyable and therefore its maximum damage.<br>
 The better the tool material, the higher the maximum life span of this hammer and therefore<br>
 a higher maximum damage capability.<br>
 
-### Crafting Recipes
+### Hammer Recipes
 You can craft the named tool materials as follows. Please read the [#Leveling](https://github.com/mindcubr/Forge-Hammers/edit/master/README.md#Leveling) part to understand<br>
 how leveling works and [#Unbreaking Ore](https://github.com/mindcubr/Forge-Hammers/edit/master/README.md#Unbreaking%20Ore) and [#Party The Unbreaking](https://github.com/mindcubr/Forge-Hammers/edit/master/README.md#Party%20the%20Unbreaking) to understand the Unbreaking Ore<br>
 and its ingots. Remember, that the default Level of all hammers is the first (Level I), when crafted.<br>
