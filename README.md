@@ -9,6 +9,8 @@ with JavaDocs and made with quality in mind. So please do not mind mispellings o
 This modification is compatible with the most modifications for Minecraft, as it
 is made with independence in mind, without any library required, except Forge.<br><br>
 <a href="https://github.com/mindcubr/Forge-Hammers/releases/tag/1.0.1-alpha"><img src="https://img.shields.io/badge/-download_latest-blue?style=for-the-badge&logo=flipboard"></img></a>
+<a href="http://mindev.biz/projects/Forge-Hammers/docs/"><img src="https://img.shields.io/badge/-javadocs-red?style=for-the-badge&logo=java"></img></a>
+
 <br><br>
 ![image](https://user-images.githubusercontent.com/47287352/112938929-e44f7a80-912a-11eb-9773-81b44697800a.png)
 
