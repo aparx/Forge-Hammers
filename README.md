@@ -31,8 +31,8 @@ The better the tool material, the higher the maximum life span of this hammer an
 a higher maximum damage capability.<br>
 
 ### Crafting Recipes
-You can craft the named tool materials as follows. Please read the #Leveling part to understand<br>
-how leveling works and #Unbreaking Ore and #Party the Unbreaking to understand the Unbreaking Ore<br>
+You can craft the named tool materials as follows. Please read the [#Leveling](https://github.com/mindcubr/Forge-Hammers/edit/master/README.md#Leveling) part to understand<br>
+how leveling works and [#Unbreaking Ore](https://github.com/mindcubr/Forge-Hammers/edit/master/README.md#Unbreaking Ore) and [#Party The Unbreaking](https://github.com/mindcubr/Forge-Hammers/edit/master/README.md#Party the Unbreaking) to understand the Unbreaking Ore<br>
 and its ingots. Remember, that the default Level of all hammers is the first (Level I), when crafted.<br>
 If you do not understand the materials or items used, just read further within this Readme and come back.<br>
 
@@ -41,7 +41,7 @@ If you do not understand the materials or items used, just read further within t
 As mentioned there are currently six tool materials, whereas one of them is the *Unbreaking* material.<br>
 It breaks blocks faster than a diamond pickaxe and is effective against every block material,<br>
 except Bedrock. Of course. A unbreaking hammer is crafted with *Unbreaking Ingots* that are the<br>
-result of a smelting recipe from the ore itself. The *Unbreaking Ore* is really rare, rarer than<br>![Unbenannt-1](https://user-images.githubusercontent.com/47287352/112939348-9a1ac900-912b-11eb-911e-1d0b17c6788a.png)
+result of a smelting recipe from the ore itself. The *Unbreaking Ore* is really rare, rarer than<br>
 
 diamonds, but can be found much easier in the *Nether* and *End* dimension, but spawns in every dimension.<br>
 By default it just spawns at heights of 5 to 20 but may vary depending on a funky randomization algorithm<br>
