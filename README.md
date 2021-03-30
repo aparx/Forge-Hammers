@@ -32,7 +32,7 @@ a higher maximum damage capability.<br>
 
 ### Hammer Recipes
 You can craft the named tool materials as follows. Please read the [#Leveling](https://github.com/mindcubr/Forge-Hammers/blob/master/README.md#Leveling) part to understand<br>
-how leveling works and [#Unbreaking Ore](https://github.com/mindcubr/Forge-Hammers/blob/master/README.md#Unbreaking%20Ore) and [#Party The Unbreaking](https://github.com/mindcubr/Forge-Hammers/blob/master/README.md#Party%20the%20Unbreaking) to understand the Unbreaking Ore<br>
+how leveling works and [#Unbreaking Ore](https://github.com/mindcubr/Forge-Hammers/blob/master/README.md#unbreaking-ore) and [#Party The Unbreaking](https://github.com/mindcubr/Forge-Hammers/blob/master/README.md#party-the-unbreaking) to understand the Unbreaking Ore<br>
 and its ingots. Remember, that the default Level of all hammers is the first (Level I), when crafted.<br>
 If you do not understand the materials or items used, just read further within this Readme and come back.<br><br>
 ![wooden](https://user-images.githubusercontent.com/47287352/112945338-73ad5b80-9134-11eb-99c0-f3a4380ae006.png)
