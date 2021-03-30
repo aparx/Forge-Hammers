@@ -15,7 +15,7 @@ is made with independence in mind, without any library required, except Forge.<b
 ## Hammers
 ### What is a "Hammer"?<br>
 <img src="https://i.gyazo.com/e80bda161c94f4b1be304843cb9c10d7.gif" align="right" width="300"></img>
-A hammer is an craftable item within Minecraft, that is behaving like a pickaxe itself<br>
+A hammer is a craftable item within Minecraft, that is behaving like a pickaxe itself<br>
 but still adds functionality to the gameplay, as it destroys blocks nearby the breaking center<br>
 at a given radius, that is determined by the **Level** of the hammer.<br>
 At the moment, there are 6 tool materials, that a hammer can exist of:<br>
