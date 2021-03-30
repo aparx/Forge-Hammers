@@ -3,9 +3,9 @@ package mindcubr.github.forge.hammers.register;
 import com.google.common.collect.Lists;
 import mindcubr.github.forge.hammers.HammerElement;
 import mindcubr.github.forge.hammers.hook.Register;
-import mindcubr.github.forge.hammers.item.ItemUnbreakingIngot;
 import mindcubr.github.forge.hammers.item.ItemHammerLevel;
 import mindcubr.github.forge.hammers.item.ItemHammerTool;
+import mindcubr.github.forge.hammers.item.ItemUnbreakingIngot;
 import net.minecraft.item.Item;
 
 import javax.annotation.Nonnull;
@@ -40,6 +40,11 @@ public class HammerItems extends Register<HammerElement> {
     public static ItemHammerLevel[] itemHammerLevels = new ItemHammerLevel[ItemHammerLevel.MAX_LEVEL];
 
     public static final ItemUnbreakingIngot unbreakingIngot = new ItemUnbreakingIngot();
+
+    /**
+     * The unbreaking material, related to the {@link #unbreakingIngot}.
+     */
+    public static Item.ToolMaterial unbreakingMaterial;
 
     /**
      * Creates a private repository of the register.

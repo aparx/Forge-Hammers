@@ -23,7 +23,7 @@ import java.util.List;
  * @author mindcubr
  * @since 1.0.0-0.1
  */
-@Mod(modid = Reference.MOD_ID, version = Reference.MOD_VERSION, acceptedMinecraftVersions = "1.7.10")
+@Mod(modid = Reference.MOD_ID, version = Reference.MOD_VERSION)
 public class HammersMod {
 
     /**
@@ -63,7 +63,7 @@ public class HammersMod {
             Item.ToolMaterial.EMERALD,
 
             //Register the unbreaking ingot tool material to the this mods base materials
-            ItemUnbreakingIngot.registerMaterial()
+            HammerItems.unbreakingMaterial = ItemUnbreakingIngot.registerMaterial()
     };
 
     /**

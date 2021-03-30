@@ -3,9 +3,9 @@ package mindcubr.github.forge.hammers.item;
 import cpw.mods.fml.common.registry.GameRegistry;
 import lombok.Getter;
 import mindcubr.github.forge.hammers.HammerElement;
-import mindcubr.github.forge.hammers.hook.HammersHook;
 import mindcubr.github.forge.hammers.HammersMod;
 import mindcubr.github.forge.hammers.Reference;
+import mindcubr.github.forge.hammers.hook.HammersHook;
 import mindcubr.github.forge.hammers.register.HammerItems;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -229,7 +229,7 @@ public class ItemHammerTool extends ItemPickaxe implements HammerElement {
     @Override
     public void registerRecipe() {
         Object thisRecipeRep = getRecipeRepresentative();
-        GameRegistry.addRecipe(new ItemStack(this), "ODO", "RRR", " S ",
+        GameRegistry.addRecipe(new ItemStack(this), "ODO", "RSR", " S ",
                 'O', Blocks.obsidian, 'D', Items.diamond, 'R', thisRecipeRep, 'S', Items.stick);
 
         /* Begin registering every level recipe combined with this instance */
@@ -279,19 +279,27 @@ public class ItemHammerTool extends ItemPickaxe implements HammerElement {
      */
     @Nonnull
     public Object getRecipeRepresentative() {
+        //Check if tool material is unbreaking material, return ingots
+        if (toolMaterial == HammerItems.unbreakingMaterial)
+            return HammerItems.unbreakingIngot;
+
+        //Check for existing materials
         switch (toolMaterial) {
             //Diamond material
             case EMERALD:
-                return Items.diamond;
+                return Blocks.diamond_block;
+
+            //Stone material
+            case STONE:
+                return Blocks.stone;
+
             //Golden material
             case GOLD:
-                return Items.gold_ingot;
+                return Blocks.gold_block;
 
             //Iron material
             case IRON:
-                return Items.iron_ingot;
-
-            //TODO: Register new valid materials
+                return Blocks.iron_block;
 
             //Anything else, wooden included
             default:
