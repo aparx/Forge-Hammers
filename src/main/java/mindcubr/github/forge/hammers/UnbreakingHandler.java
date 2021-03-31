@@ -9,14 +9,13 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import org.apache.commons.lang3.Validate;
 
 /**
  * The unbreaking handler is the actual recipe register for any element
- * that is surrounded with {@link HammerItems#unbreakingIngot unbreaking ingots},
+ * that is surrounded with {@link HammerItems#UNBREAKING_INGOT unbreaking ingots},
  * within any crafting inventory with size greater or equal to <b>nine</b>.
  * In other words, this handler is actually registering foreign and third party
  * breakable items and stacks to be Unbreaking-applicable.
@@ -88,7 +87,7 @@ public class UnbreakingHandler {
                     }
 
                     //Check item for unbreaking ingot, ow return false
-                    if (item != HammerItems.unbreakingIngot)
+                    if (item != HammerItems.UNBREAKING_INGOT)
                         return false;
 
                 }
@@ -100,13 +99,8 @@ public class UnbreakingHandler {
                 ItemStack output = inv.getStackInSlot(center);
                 output = output.copy();
 
-                //Get compound of element for lore and unbreaking NBT editing
-                NBTTagCompound compound = HammersHook
-                        .ItemHook.createAbsent(output);
-
-                //Update the "Unbreakable" state of the item
-                compound.setBoolean("Unbreakable", true);
-                output.setTagCompound(compound);
+                //Make item unbreakable
+                HammersHook.ItemHook.setUnbreakable(output, true);
 
                 //Update the lore of that item
                 HammersHook.ItemHook.setLore(output, Lists.newArrayList("\u00a77Forever Unbreaking"));

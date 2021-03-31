@@ -6,10 +6,13 @@ import mindcubr.github.forge.hammers.hook.Register;
 import mindcubr.github.forge.hammers.item.ItemHammerLevel;
 import mindcubr.github.forge.hammers.item.ItemHammerTool;
 import mindcubr.github.forge.hammers.item.ItemUnbreakingIngot;
+import mindcubr.github.forge.hammers.item.custom.*;
 import net.minecraft.item.Item;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.Iterator;
 import java.util.Objects;
 
@@ -39,12 +42,22 @@ public class HammerItems extends Register<HammerElement> {
      */
     public static ItemHammerLevel[] itemHammerLevels = new ItemHammerLevel[ItemHammerLevel.MAX_LEVEL];
 
-    public static final ItemUnbreakingIngot unbreakingIngot = new ItemUnbreakingIngot();
-
     /**
-     * The unbreaking material, related to the {@link #unbreakingIngot}.
+     * The unbreaking material, related to the {@link #UNBREAKING_INGOT}.
      */
-    public static Item.ToolMaterial unbreakingMaterial;
+    public static Item.ToolMaterial UNBREAKING_MATERIAL = ItemUnbreakingIngot.registerMaterial();
+
+    public static final ItemUnbreakingIngot UNBREAKING_INGOT = new ItemUnbreakingIngot();
+
+    public static final ItemUnbreakingAxe UNBREAKING_AXE = new ItemUnbreakingAxe();
+
+    public static final ItemUnbreakingPickaxe UNBREAKING_PICKAXE = new ItemUnbreakingPickaxe();
+
+    public static final ItemUnbreakingHoe UNBREAKING_HOE = new ItemUnbreakingHoe();
+
+    public static final ItemUnbreakingShovel UNBREAKING_SPADE = new ItemUnbreakingShovel();
+
+    public static final ItemUnbreakingSword UNBREAKING_SWORD = new ItemUnbreakingSword();
 
     /**
      * Creates a private repository of the register.
@@ -53,9 +66,30 @@ public class HammerItems extends Register<HammerElement> {
         super(Lists.newArrayList());
     }
 
+    /**
+     * @since 2.0.0-alpha
+     */
     static {
-        //Register unbreaking ingot
-        HammerItems.SINGLETON.register(unbreakingIngot);
+        //Iterate all declared fields of the container
+        for (Field field : HammerItems.class.getDeclaredFields()) {
+            int modifier = field.getModifiers();
+            if (!Modifier.isStatic(modifier)
+                    || !Modifier.isFinal(modifier))
+                continue;
+
+            //Check if the field type is an hammer element to be registered
+            Class<?> type = field.getType();
+            if (!HammerElement.class.isAssignableFrom(type))
+                continue;
+
+            //Register value if possible
+            try {
+                HammerItems.SINGLETON.register((HammerElement) field.get(null));
+            } catch (IllegalAccessException exception) {
+                //Rethrow exception
+                throw new RuntimeException(exception);
+            }
+        }
     }
 
     /**

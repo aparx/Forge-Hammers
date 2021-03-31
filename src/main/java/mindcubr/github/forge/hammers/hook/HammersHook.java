@@ -173,6 +173,26 @@ public class HammersHook {
         }
 
         /**
+         * Makes the {@code stack} unbreakable if the {@code value} is <em>True</em>.
+         *
+         * @param stack the stack to make either unbreakable or breakable
+         * @param value the value of the unbreakable state, if set to <em>True</em>
+         *              the {@code stack} is unbreakable, otherwise <em>breakable</em>.
+         * @since 1.0.1-alpha
+         */
+        public static void setUnbreakable(@Nonnull ItemStack stack, boolean value) {
+            Validate.notNull(stack);
+
+            //Get compound of element unbreaking NBT editing
+            NBTTagCompound compound = HammersHook
+                    .ItemHook.createAbsent(stack);
+
+            //Update the "Unbreakable" state of the item
+            compound.setBoolean("Unbreakable", value);
+            stack.setTagCompound(compound);
+        }
+
+        /**
          * Updates the <em>Lore</em> (description) of the {@code stack} to the
          * input {@code lore}.
          *

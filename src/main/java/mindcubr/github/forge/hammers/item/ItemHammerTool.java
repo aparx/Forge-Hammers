@@ -8,6 +8,8 @@ import mindcubr.github.forge.hammers.Reference;
 import mindcubr.github.forge.hammers.hook.HammersHook;
 import mindcubr.github.forge.hammers.register.HammerItems;
 import net.minecraft.block.Block;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -18,6 +20,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
@@ -157,6 +160,10 @@ public class ItemHammerTool extends ItemPickaxe implements HammerElement {
         if (!isBreakable(world, breakX, breakY, breakZ))
             return state;
 
+        //Increase NBT usage amount of the stack
+        int usages = usagesIncr(stack);
+        HammersHook.sendMessage(player, usages);
+
         //Determines the radius, off the radial length
         final int radius = getRadial() / 2;
         for (int x = -radius; x <= radius; x++) {
@@ -171,7 +178,10 @@ public class ItemHammerTool extends ItemPickaxe implements HammerElement {
 
                     //Destroy block and damage the item, if possible
                     if (world.func_147480_a(xPos, yPos, zPos, true /*drop*/)) {
-                        damageItem(stack, 1, player);
+                        //Damage item, that returns, whether to reset the usages
+                        if (damageItem(stack, 1, player)) {
+                            usagesReset(stack);
+                        }
                     }
                 }
             }
@@ -182,20 +192,82 @@ public class ItemHammerTool extends ItemPickaxe implements HammerElement {
 
     /**
      * Damages the input {@code stack} based on certain conditions and
-     * values with the amount of input {@code damage}.
+     * values with the amount of input {@code damage} and resets
+     * the usage if required.
+     * <p>If the {@code stack} is enchanted this method is enhanced
+     * in <code>2.0.0</code> to check for <em>unbreaking</em> enchantment
+     * and its level. The enhanced method includes a usage count to alter
+     * when to damage the item and even <em>if</em>.
      *
      * @param stack the stack passed, not {@code null}
+     * @return whether the damage was completed. This is mostly used
+     * in relation to check whether to reset the usages of the input
+     * {@code stack}.
      */
-    public void damageItem(ItemStack stack, int damage, EntityLivingBase holder) {
+    public boolean damageItem(ItemStack stack, int damage, EntityLivingBase holder) {
         //Validate and check for no damage possibility
         Validate.notNull(stack);
         if (!stack.isItemStackDamageable())
-            return;
+            return false;
+
+        //Check if item is enchanted
+        if (stack.isItemEnchanted()) {
+            int ubId = Enchantment.unbreaking.effectId;
+            int level;
+            if ((level = EnchantmentHelper
+                    .getEnchantmentLevel(ubId, stack)) != 0) {
+                final int usages = usagesGet(stack);
+                final int alive = 2 * level; //Unbreaking I: every 2nd, II: 4th, III: 6th, ...
+                if (usages < alive)
+                    return false;
+            }
+        }
 
         //Damage the item, if possible
         stack.damageItem(damage, holder);
+        return true;
     }
 
+    /**
+     * Returns the amount of usages the {@code stack} has.
+     *
+     * @param stack the item stack containing the possible compound
+     * @return the usages the stack has, if no one is set, zero is returned.
+     */
+    protected final int usagesGet(@Nonnull ItemStack stack) {
+        Validate.notNull(stack);
+        NBTTagCompound compound = HammersHook.ItemHook.createAbsent(stack);
+        if (compound.hasKey("usages"))
+            return compound.getInteger("usages");
+
+        //Return zero, as no compound is set or not contained
+        return 0;
+    }
+
+    /**
+     * Increases the amount of usages of the {@code stack}.
+     *
+     * @param stack the item stack containing the possible compound
+     * @return the new usages amount of the {@code stack}
+     */
+    protected final int usagesIncr(@Nonnull ItemStack stack) {
+        Validate.notNull(stack);
+        NBTTagCompound compound = HammersHook.ItemHook.createAbsent(stack);
+        int usages = usagesGet(stack);
+        compound.setInteger("usages", ++usages);
+        return usages;
+    }
+
+    /**
+     * Resets the amount of usages of the {@code stack}.
+     *
+     * @param stack the item stack containing the possible compound
+     */
+    protected final void usagesReset(@Nonnull ItemStack stack) {
+        Validate.notNull(stack);
+        NBTTagCompound compound = HammersHook.ItemHook.createAbsent(stack);
+        compound.setInteger("usages", 0);
+    }
 
     /**
      * Returns whether the block within the {@code world} at {@code x}, {@code y}
@@ -280,8 +352,8 @@ public class ItemHammerTool extends ItemPickaxe implements HammerElement {
     @Nonnull
     public Object getRecipeRepresentative() {
         //Check if tool material is unbreaking material, return ingots
-        if (toolMaterial == HammerItems.unbreakingMaterial)
-            return HammerItems.unbreakingIngot;
+        if (toolMaterial == HammerItems.UNBREAKING_MATERIAL)
+            return HammerItems.UNBREAKING_INGOT;
 
         //Check for existing materials
         switch (toolMaterial) {

@@ -29,8 +29,12 @@ public interface HammerElement {
     /**
      * Method invoked when this element instance is to be loaded,
      * including registration, recipe, smelting, configuration, etc.
+     * @implNote 2.0.0-alpha: by default, this method invokes
+     * {@link #registerRecipe()}. This method is now optional.
      */
-    void load();
+    default void load() {
+        registerRecipe();
+    }
 
     /**
      * Returns this elements branch name, so the actual name,

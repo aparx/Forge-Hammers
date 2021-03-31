@@ -44,7 +44,7 @@ public final class BlockUnbreakingOre extends Block implements HammerElement {
     @Override
     public void registerRecipe() {
         //Smelting recipe for this to become ingots
-        GameRegistry.addSmelting(this, new ItemStack(HammerItems.unbreakingIngot), 2.0F);
+        GameRegistry.addSmelting(this, new ItemStack(HammerItems.UNBREAKING_INGOT), 2.0F);
     }
 
     /**
@@ -77,7 +77,7 @@ public final class BlockUnbreakingOre extends Block implements HammerElement {
         ItemStack[] drops = new ItemStack[fortune + 1];
         int quantity = quantityDropped(metadata, fortune, random);
         for (int i = 0; i < quantity; i++) {
-            drops[i] = new ItemStack(HammerItems.unbreakingIngot);
+            drops[i] = new ItemStack(HammerItems.UNBREAKING_INGOT);
         }
         return Lists.newArrayList(drops);
     }
@@ -96,7 +96,7 @@ public final class BlockUnbreakingOre extends Block implements HammerElement {
     public Item getItemDropped(int meta, Random random, int fortune) {
         //Get quantity and return the new stack
         int quantity = quantityDropped(meta, fortune, random);
-        return new ItemStack(HammerItems.unbreakingIngot, quantity).getItem();
+        return new ItemStack(HammerItems.UNBREAKING_INGOT, quantity).getItem();
     }
 
     /**

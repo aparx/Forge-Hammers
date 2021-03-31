@@ -4,12 +4,11 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
-import mindcubr.github.forge.hammers.unbreaking.generation.UnbreakingGenerator;
 import mindcubr.github.forge.hammers.item.ItemHammerLevel;
 import mindcubr.github.forge.hammers.item.ItemHammerTool;
-import mindcubr.github.forge.hammers.item.ItemUnbreakingIngot;
 import mindcubr.github.forge.hammers.register.HammerBlocks;
 import mindcubr.github.forge.hammers.register.HammerItems;
+import mindcubr.github.forge.hammers.unbreaking.generation.UnbreakingGenerator;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import org.apache.commons.lang3.Validate;
@@ -62,8 +61,8 @@ public class HammersMod {
             Item.ToolMaterial.GOLD,
             Item.ToolMaterial.EMERALD,
 
-            //Register the unbreaking ingot tool material to the this mods base materials
-            HammerItems.unbreakingMaterial = ItemUnbreakingIngot.registerMaterial()
+            //Add the unbreaking material
+            HammerItems.UNBREAKING_MATERIAL
     };
 
     /**
