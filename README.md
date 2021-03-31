@@ -1,20 +1,22 @@
-# Forge Hammers: Introduction
-<img src="https://user-images.githubusercontent.com/47287352/112940993-380f9300-912e-11eb-889a-417078050f9e.png" align="left" width="86px"></img>
-Hammers is a **Minecraft 1.7.10 (+ 1.16. in the future)** modification that adds special<br>
-functionality to every miner, that wants to break large areas at once.<br>
-This modification adds new ores, machines and items to a players daily life and world.<br>
-Although it maintains high efficiency, performance and quality it keeps improving the players game experience.<br>
-I want to mention, that this project is not the best I produced, as it is<br>
-just for fun but still fully documented with JavaDocs and made with quality in mind. So please do not mind<br>
-mispellings or that the code looks a bit noisy.<br>
-This modification is compatible with the most modifications for Minecraft, as it<br>
+# Forge Hammers
+Hammers is a **Minecraft 1.7.10 (+ 1.16. in the future)** modification that adds special
+functionality to every miner, that wants to break large areas at once.
+This modification adds new ores, machines and items to a players daily life and world.
+Although it maintains high efficiency, performance and quality it keeps improving the players game experience.
+I want to mention, that this project is not the best I produced, as it is just for fun but still fully documented
+with JavaDocs and made with quality in mind. So please do not mind mispellings or that the code looks a bit noisy.
+This modification is compatible with the most modifications for Minecraft, as it
 is made with independence in mind, without any library required, except Forge.<br><br>
+<a href="https://github.com/mindcubr/Forge-Hammers/releases/tag/1.0.1-alpha"><img src="https://img.shields.io/badge/-download_latest-blue?style=for-the-badge&logo=flipboard"></img></a>
+<a href="http://mindev.biz/projects/Forge-Hammers/docs/"><img src="https://img.shields.io/badge/-javadocs-red?style=for-the-badge&logo=java"></img></a>
 
+<br><br>
 ![image](https://user-images.githubusercontent.com/47287352/112938929-e44f7a80-912a-11eb-9773-81b44697800a.png)
 
 ## Hammers
 ### What is a "Hammer"?<br>
-A hammer is an craftable item within Minecraft, that is behaving like a pickaxe itself<br>
+<img src="https://i.gyazo.com/e80bda161c94f4b1be304843cb9c10d7.gif" align="right" width="300"></img>
+A hammer is a craftable item within Minecraft, that is behaving like a pickaxe itself<br>
 but still adds functionality to the gameplay, as it destroys blocks nearby the breaking center<br>
 at a given radius, that is determined by the **Level** of the hammer.<br>
 At the moment, there are 6 tool materials, that a hammer can exist of:<br>
@@ -43,10 +45,6 @@ If you do not understand the materials or items used, just read further within t
 ![unbreaking](https://user-images.githubusercontent.com/47287352/112946679-1b775900-9136-11eb-9644-df9fb41efa53.png)
 
 
-
-
-
-
 ## Unbreaking Ore
 As mentioned there are currently six tool materials, whereas one of them is the *Unbreaking* material.<br>
 It breaks blocks faster than a diamond pickaxe and is effective against every block material,<br>
@@ -65,6 +63,7 @@ and the dimension the chunk is generated in.<br>
 The Unbreaking Ingot is really strong and can be used to make any breakable item unbreakable. Forever.<br>
 This is why the Unbreaking Ore is really rare and just gives you one ingot after cooking it for so long!<br>
 But however, the *Unbreaking Ore* might be one of the most powerful ores you can find.<br>
+The Unbreaking Ingot works with **every** breakable item, even from third party modifications.<br>
 
 # Leveling
 The level system of this modification is pretty simple but still very efficient.<br>
