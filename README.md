@@ -106,7 +106,7 @@ Cubic metres destroyed nearby: **5 m³**<br><br>
 
 
 <br><br>
-### Unbreaking Tools
+# Unbreaking Tools
 Since *3.0.0-alpha* there are new tools added to the game, which you can use infinitely.<br>
 Those tools are almost behaving the same as their diamond materials, but in some<br>
 there is a difference, which is listed with the following crafting recipes:
