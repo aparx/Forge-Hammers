@@ -115,12 +115,12 @@ public class UnbreakingGenerator implements IWorldGenerator {
         switch (dimension) {
             case 1: //End
                 spawnRate += 8 /* 8 percent more in the End */;
-                beginY += 50;
+                maxHeight += 50;
                 target = Blocks.end_stone;
                 break;
             case -1: //Nether
                 spawnRate += 5 /* 5 percent more in the Nether */;
-                beginY += 50;
+                maxHeight += 50;
                 target = Blocks.netherrack;
                 break;
             default: //Overworld or third parties world
