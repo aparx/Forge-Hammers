@@ -77,7 +77,7 @@ public final class BlockUnbreakingOre extends Block implements HammerElement {
         ItemStack[] drops = new ItemStack[fortune + 1];
         int quantity = quantityDropped(metadata, fortune, random);
         for (int i = 0; i < quantity; i++) {
-            drops[i] = new ItemStack(HammerItems.UNBREAKING_INGOT);
+            drops[i] = new ItemStack(this);
         }
         return Lists.newArrayList(drops);
     }
@@ -96,7 +96,7 @@ public final class BlockUnbreakingOre extends Block implements HammerElement {
     public Item getItemDropped(int meta, Random random, int fortune) {
         //Get quantity and return the new stack
         int quantity = quantityDropped(meta, fortune, random);
-        return new ItemStack(HammerItems.UNBREAKING_INGOT, quantity).getItem();
+        return new ItemStack(this, quantity).getItem();
     }
 
     /**
@@ -110,6 +110,14 @@ public final class BlockUnbreakingOre extends Block implements HammerElement {
     @Override
     public int quantityDroppedWithBonus(int fortune, Random random) {
         return HammersHook.randomize(random, fortune + 1);
+    }
+
+    /**
+     * Returns false, so no ore can replace this unbreaking ore.
+     */
+    @Override
+    public boolean isReplaceableOreGen(World world, int x, int y, int z, Block target) {
+        return false;
     }
 
     /**

@@ -42,6 +42,7 @@ public class ItemUnbreakingAxe extends ItemAxe implements HammerElement {
         setMaxDamage(-1);
     }
 
+
     /**
      * When the {@link HammersMod} registers and loads this item.
      */
@@ -49,6 +50,19 @@ public class ItemUnbreakingAxe extends ItemAxe implements HammerElement {
     public void load() {
         GameRegistry.registerItem(this, getBranch());
         registerRecipe();   //Register recipe second
+    }
+
+    /**
+     * This is required for the enchanting to work.
+     *
+     * @param stack the item stack
+     * @return whether the input {@code stack} is enchantable, in our case.
+     * @since 3.0.0-alpha
+     */
+    @Override
+    public boolean isItemTool(ItemStack stack) {
+        //Return true, as the item should be this instance
+        return stack != null;
     }
 
     @Nonnull

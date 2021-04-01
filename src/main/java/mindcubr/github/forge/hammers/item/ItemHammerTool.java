@@ -6,6 +6,7 @@ import mindcubr.github.forge.hammers.HammerElement;
 import mindcubr.github.forge.hammers.HammersMod;
 import mindcubr.github.forge.hammers.Reference;
 import mindcubr.github.forge.hammers.hook.HammersHook;
+import mindcubr.github.forge.hammers.register.HammerBlocks;
 import mindcubr.github.forge.hammers.register.HammerItems;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
@@ -162,7 +163,6 @@ public class ItemHammerTool extends ItemPickaxe implements HammerElement {
 
         //Increase NBT usage amount of the stack
         int usages = usagesIncr(stack);
-        HammersHook.sendMessage(player, usages);
 
         //Determines the radius, off the radial length
         final int radius = getRadial() / 2;
@@ -292,6 +292,12 @@ public class ItemHammerTool extends ItemPickaxe implements HammerElement {
 
         //Check if hardness is equal to unbreaking
         if (block.getBlockHardness(world, x, y, z) < 0.0F)
+            return false;
+
+        //Denies instant break of unbreaking material with non unbreaking hammer
+        //since '3.0.0-alpha'
+        if (block == HammerBlocks.unbreakingOre
+                && this.toolMaterial != HammerItems.UNBREAKING_MATERIAL)
             return false;
 
         //Check if block is just a normal cube or not

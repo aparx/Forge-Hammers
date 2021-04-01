@@ -60,7 +60,7 @@ public class HammersHook {
             return min;
 
         //Generate random
-        return random.nextInt(Math.max(max - min, 1)) + min;
+        return random.nextInt(Math.max(max - min + 1, 1)) + min;
     }
 
     /**

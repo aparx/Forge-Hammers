@@ -78,7 +78,7 @@ public class HammersMod {
         registerBlocks();   //Block registration third
 
         //Generator registration last
-        GameRegistry.registerWorldGenerator(UnbreakingGenerator.SINGLETON, 100);
+        GameRegistry.registerWorldGenerator(UnbreakingGenerator.SINGLETON, 50);
         UnbreakingHandler.register();
     }
 

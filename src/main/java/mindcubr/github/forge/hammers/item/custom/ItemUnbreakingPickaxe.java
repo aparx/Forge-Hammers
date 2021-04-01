@@ -51,6 +51,19 @@ public class ItemUnbreakingPickaxe extends ItemPickaxe implements HammerElement 
         registerRecipe();   //Register recipe second
     }
 
+    /**
+     * This is required for the enchanting to work.
+     *
+     * @param stack the item stack
+     * @return whether the input {@code stack} is enchantable, in our case.
+     * @since 3.0.0-alpha
+     */
+    @Override
+    public boolean isItemTool(ItemStack stack) {
+        //Return true, as the item should be this instance
+        return stack != null;
+    }
+
     @Nonnull
     @Override
     public String getUnlocalized() {

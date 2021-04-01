@@ -55,7 +55,7 @@ public class ItemUnbreakingIngot extends Item implements HammerElement {
      * @return the new meshed material.
      */
     public static ToolMaterial registerMaterial() {
-        return EnumHelper.addToolMaterial("UNBREAKING", 4, Integer.MAX_VALUE, 8.0F, 4.0F, 15);
+        return EnumHelper.addToolMaterial("UNBREAKING", 4, Integer.MAX_VALUE, 8.0F, 4.0F, 10);
     }
 
     /**

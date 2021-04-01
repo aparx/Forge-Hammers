@@ -7,8 +7,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.feature.WorldGenMinable;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import org.apache.commons.lang3.Validate;
 
@@ -27,13 +25,44 @@ public class UnbreakingGenerator implements IWorldGenerator {
 
     public static final UnbreakingGenerator SINGLETON = new UnbreakingGenerator();
 
-    private int spawnChance = 2;
+    /**
+     * The maximum spawn chance of ores in percent
+     *
+     * @apiNote This value might vary on chunk generation,
+     * as multiple randomized processes occur and operate
+     */
+    private int maxSpawnRate = 15;
 
-    private int vienChance = 4;
+    /**
+     * The maximum amount of ores pro chunk possible.
+     * The maximum amount is equal to this but squared:
+     * <pre><code>
+     *     amountPerCh unkMax = maxPerChunk * maxPerChunk
+     * </code></pre>
+     *
+     * @implNote By default, this is using the square root
+     * of the number <b>8.0</b>. This is due to an easier
+     * display, as it then stands for the actual maximum amount
+     * of ores possible at max.
+     */
+    private int maxPerChunk = (int) Math.sqrt(8);
 
-    private int vienMaxY = 20;
+    /**
+     * The actual radius of a vein to be calculated off.
+     * This has no impact or effect on the {@link #maxPerChunk}
+     * or {@link #maxSpawnRate}.
+     */
+    private int maxVeinRadius = 4;
 
-    private int vienMinY = 5;
+    private int maxHeight = 20;
+
+    private int minHeight = 5;
+
+    /**
+     * The maximum rate boundary, so the actual amount of percentage.
+     * By default this is set to <code>100</code>.
+     */
+    private int spawnRateBoundary = Math.max(100, maxPerChunk);
 
     /**
      * Creates an new instance of this class and
@@ -57,76 +86,131 @@ public class UnbreakingGenerator implements IWorldGenerator {
         generate(HammerBlocks.unbreakingOre, random, world, dimension, chunkX, chunkZ);
     }
 
-    void generate(@Nonnull Block block, @Nonnull Random rand, @Nonnull World world,
-                  int dimension, int chunkX, int chunkZ) {
+    /**
+     * Generates the {@code block} as ore in {@code world} in chunk
+     * {@code chunkX} and {@code chunkZ}.
+     *
+     * @param block     the block ore, so the actual block
+     *                  in our instance it is just the unbreaking ore,
+     *                  but as separate block instance for possible RT changes
+     * @param rand      the randomization using the {@code worlds} seed
+     * @param world     the world where to spawn
+     * @param dimension the dimension of the {@code world}
+     * @param chunkX    the beginning tridi-x of chunk
+     * @param chunkZ    the beginning tridi-z of chunk
+     * @see #veinGenerate(World, Random, int, int, int, int, Block, int)
+     */
+    protected void generate(@Nonnull Block block, @Nonnull Random rand, @Nonnull World world,
+                            int dimension, int chunkX, int chunkZ) {
         Validate.notNull(block);
         Validate.notNull(rand);
         Validate.notNull(world);
 
-        //Check if should spawn within the chunk, neg
-        if (!allowSpawn(rand))
-            return;
-
-        int vienChance = this.vienChance;
-        int vienBeginY = this.vienMaxY;
-        int vienMinY = this.vienMinY;
-
-        //Region where to spawn the ore
+        int spawnRate = this.maxSpawnRate;
+        int beginY = minHeight;
         Block target = Blocks.stone;
+
+        //Manipulation for the environment attributes and parameters
+        //to spawn the actual ore
         switch (dimension) {
             case 1: //End
-                vienChance += 15;
-                vienBeginY += 15;
+                spawnRate += 8 /* 8 percent more in the End */;
+                beginY += 50;
                 target = Blocks.end_stone;
                 break;
             case -1: //Nether
-                vienBeginY += 100;
+                spawnRate += 5 /* 5 percent more in the Nether */;
+                beginY += 50;
                 target = Blocks.netherrack;
                 break;
-            default: //Overworld or third
+            default: //Overworld or third parties world
                 break;
         }
 
-        int length = randomize(rand, vienChance);
-        int height = randomize(rand, vienBeginY - vienMinY);
-        WorldGenMinable generator = new WorldGenMinable(block, length, target);
-
         //Loop through the spawn chance, that is also the amount
         //of possible equal ores in the same chunk
-        int i = 0;
-        while (i++ < spawnChance && placeOreAtRandPos(generator, world, rand, chunkX,
-                chunkZ, vienMinY, height)) ;
+        for (int i = 0; i < maxPerChunk; i++) {
+            //Generate a random vein
+            veinGenerate(world, rand, chunkX, chunkZ, beginY, maxHeight, target, spawnRate);
+        }
     }
 
-    boolean placeOreAtRandPos(@Nonnull WorldGenerator generator, @Nonnull World world, @Nonnull Random random,
-                              int chunkX, int chunkZ, int minY, int height) {
-        Validate.notNull(generator);
+    /**
+     * Generates a possible vein at {@code world} at {@code chunkX}
+     * {@code chunkZ} and inbetween the heights at a randomized
+     * position calculated in here.
+     *
+     * @param world     the world where to generate the vein in
+     * @param random    the randomizer used for randomization processes
+     * @param chunkX    the beginning tridi-x of chunk
+     * @param chunkZ    the beginning tridi-z of chunk
+     * @param minHeight the minimum height of the vein
+     * @param maxHeight the maximum height of the vein
+     * @param target    the blocks inbetween a block can be generated and replaced
+     *                  with this ore
+     * @param spawnRate a copied version of this {@link #maxSpawnRate}, but as
+     *                  parameter for changing purpose, e.g. that demands on
+     *                  the dimension of generation
+     * @since 3.0.0-alpha
+     */
+    private void veinGenerate(@Nonnull World world, @Nonnull Random random,
+                              int chunkX, int chunkZ, int minHeight, int maxHeight,
+                              Block target, int spawnRate) {
         Validate.notNull(world);
         Validate.notNull(random);
+        Validate.notNull(target);
 
-        //Random horizontal position inbetween the chunk
-        int xPos = chunkX * 16 + randomize(random, 16);
-        int zPos = chunkZ * 16 + randomize(random, 16);
+        //Calculate the center of the vein to be calculated onto
+        int veinX = chunkX * 16 + randomize(random, 16);
+        int veinZ = chunkZ * 16 + randomize(random, 16);
+        int veinY = randomize(random, minHeight, maxHeight);
+        int vein = randomize(random, maxPerChunk);
+        int amount = 0;
 
-        //Random vertical position inbetween the height
-        int yPos = randomize(random, height) + minY;
-        return !generator.generate(world, random, xPos, yPos, zPos);
+        //Generation process block scope
+        gen:
+        {
+            final int radius = maxVeinRadius;
+            for (int x = -radius; x <= radius; x++) {
+                for (int y = -radius; y <= radius; y++) {
+                    for (int z = -radius; z <= radius; z++) {
+                        int posX = veinX + x, posY = veinY + y, posZ = veinZ + z;
+
+                        //The vein rate is the spawnRate but times the inverted amount of
+                        //already spawned ores in that vein, to calculate and reach
+                        //a better spawnrate.
+                        if (!allowSpawn(random, Math.min(spawnRate, spawnRateBoundary)))
+                            continue;
+
+                        Block block = world.getBlock(posX, posY, posZ);
+                        if (!block.isReplaceableOreGen(world, posX, posY, posZ, target))
+                            continue;
+
+                        world.setBlock(posX, posY, posZ, HammerBlocks.unbreakingOre);
+                        if (++amount >= vein)
+                            break gen;
+                    }
+                }
+            }
+        }
     }
 
     /**
      * Returns whether the {@code random} is returning a random boolean
      * with value <em>True</em> the amount of repeats
-     * {@link #spawnChance chance} gives.
+     * {@link #maxSpawnRate chance} gives.
      *
+     * @param value  the actual rate required to return true,
+     *               within {@link #spawnRateBoundary}.
      * @param random the random to determine the boolean value
      * @return whether the spawning should occur and is therefore is <em>True</em>
+     * @see #spawnRateBoundary
+     * @since 3.0.0-alpha
      */
-    boolean allowSpawn(final Random random) {
+    protected boolean allowSpawn(final Random random, int value) {
         Validate.notNull(random);
-        for (int i = 0; i < 10 /* TODO set as value */; i++)
-            if (!random.nextBoolean() && i > spawnChance)
-                return false;
-        return true;
+        return random.nextInt(Math.max(spawnRateBoundary, value + 1)) <= value;
     }
+
 
 }
