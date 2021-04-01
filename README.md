@@ -106,18 +106,18 @@ Cubic metres destroyed nearby: **5 m³**<br><br>
 
 
 <br><br>
-## Unbreaking Tools
+### Unbreaking Tools
 Since *3.0.0-alpha* there are new tools added to the game, which you can use infinitely.<br>
 Those tools are almost behaving the same as their diamond materials, but in some<br>
 there is a difference, which is listed with the following crafting recipes:
 <br><br>
-### Tools
+## Tools
 ![unbreaking_shovel](https://user-images.githubusercontent.com/47287352/113337426-0e21c080-9328-11eb-8c28-a18c4816f2e5.png)
 ![unbreaking_axe](https://user-images.githubusercontent.com/47287352/113337429-0eba5700-9328-11eb-945a-1f7887e11030.png)
 ![unbreaking_hoe](https://user-images.githubusercontent.com/47287352/113337431-0f52ed80-9328-11eb-8946-2ad906d96ceb.png)
 ![unbreaking_pickaxe](https://user-images.githubusercontent.com/47287352/113337437-0f52ed80-9328-11eb-9eef-4bcd0f2c1138.png)
 
-### Unbreaking Sword
+## Unbreaking Sword
 ![unbreaking_sword](https://user-images.githubusercontent.com/47287352/113337438-0f52ed80-9328-11eb-90ad-e2d08093142c.png)<br><br>
 The unbreaking sword has an attack damage of **+8** on an entity and shares<br>
 same attributes as a diamond sword, except the durability and damage against entities.<br>
