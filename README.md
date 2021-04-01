@@ -7,7 +7,7 @@ I want to mention, that this project is not the best I produced, as it is just f
 with JavaDocs and made with quality in mind. So please do not mind mispellings or that the code looks a bit noisy.
 This modification is compatible with the most modifications for Minecraft, as it
 is made with independence in mind, without any library required, except Forge.<br><br>
-<a href="https://github.com/mindcubr/Forge-Hammers/releases/tag/3.0.0-alpha"><img src="https://img.shields.io/badge/-download_latest-blue?style=for-the-badge&logo=flipboard"></img></a>
+<a href="https://github.com/mindcubr/Forge-Hammers/releases/tag/3.0.1-alpha"><img src="https://img.shields.io/badge/-download_latest-blue?style=for-the-badge&logo=flipboard"></img></a>
 <a href="http://mindev.biz/projects/Forge-Hammers/docs/"><img src="https://img.shields.io/badge/-javadocs-red?style=for-the-badge&logo=java"></img></a>
 
 <br><br>
@@ -63,7 +63,7 @@ and the dimension the chunk is generated in.<br>
 The Unbreaking Ingot is really strong and can be used to make any breakable item unbreakable. Forever.<br>
 This is why the Unbreaking Ore is really rare and just gives you one ingot after cooking it for so long!<br>
 But however, the *Unbreaking Ore* might be one of the most powerful ores you can find.<br>
-The Unbreaking Ingot works with **every** breakable item, even from third party modifications.<br>
+The Unbreaking Ingot works with **every** breakable item, even from third party modifications.
 
 # Leveling
 The level system of this modification is pretty simple but still very efficient.<br>
@@ -104,4 +104,21 @@ This is the current final level possible to reach via crafting.<br>
 Cubic metres destroyed nearby: **5 m³**<br><br>
 ![image](https://user-images.githubusercontent.com/47287352/112857220-ebd23d80-90b0-11eb-922a-f08815959d2f.png)
 
+
+<br><br>
+# Unbreaking Tools
+Since *3.0.0-alpha* there are new tools added to the game, which you can use infinitely.<br>
+Those tools are almost behaving the same as their diamond materials, but in some<br>
+there is a difference, which is listed with the following crafting recipes:
+<br><br>
+## Tools
+![unbreaking_shovel](https://user-images.githubusercontent.com/47287352/113337426-0e21c080-9328-11eb-8c28-a18c4816f2e5.png)
+![unbreaking_axe](https://user-images.githubusercontent.com/47287352/113337429-0eba5700-9328-11eb-945a-1f7887e11030.png)
+![unbreaking_hoe](https://user-images.githubusercontent.com/47287352/113337431-0f52ed80-9328-11eb-8946-2ad906d96ceb.png)
+![unbreaking_pickaxe](https://user-images.githubusercontent.com/47287352/113337437-0f52ed80-9328-11eb-9eef-4bcd0f2c1138.png)
+
+## Unbreaking Sword
+![unbreaking_sword](https://user-images.githubusercontent.com/47287352/113337438-0f52ed80-9328-11eb-90ad-e2d08093142c.png)<br><br>
+The unbreaking sword has an attack damage of **+8** on an entity and shares<br>
+same attributes as a diamond sword, except the durability and damage against entities.<br>
 
