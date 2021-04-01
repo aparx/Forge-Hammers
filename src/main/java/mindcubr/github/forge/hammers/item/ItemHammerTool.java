@@ -102,6 +102,15 @@ public class ItemHammerTool extends ItemPickaxe implements HammerElement {
         setUnlocalizedName(branch);
         setTextureName(Reference.RESOURCE_PREFIX + branch);
         setCreativeTab(HammersMod.CREATIVE_TAB);
+
+        //Add infinite damage
+        if (material == HammerItems.UNBREAKING_MATERIAL)
+            setMaxDamage(0);
+    }
+
+    @Override
+    public boolean isItemTool(ItemStack stack) {
+        return stack != null;
     }
 
     /**
@@ -178,6 +187,9 @@ public class ItemHammerTool extends ItemPickaxe implements HammerElement {
 
                     //Destroy block and damage the item, if possible
                     if (world.func_147480_a(xPos, yPos, zPos, true /*drop*/)) {
+                        if (!stack.isItemStackDamageable())
+                            continue;
+
                         //Damage item, that returns, whether to reset the usages
                         if (damageItem(stack, 1, player)) {
                             usagesReset(stack);

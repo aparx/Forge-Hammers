@@ -39,6 +39,6 @@ public class Reference {
      *
      * @see <a href="https://semver.org/">https://semver.org/</a>
      */
-    public static final String MOD_VERSION = "3.0.1-alpha";
+    public static final String MOD_VERSION = "1.7.10-3.0.2a";
 
 }
