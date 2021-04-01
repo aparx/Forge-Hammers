@@ -7,7 +7,7 @@ I want to mention, that this project is not the best I produced, as it is just f
 with JavaDocs and made with quality in mind. So please do not mind mispellings or that the code looks a bit noisy.
 This modification is compatible with the most modifications for Minecraft, as it
 is made with independence in mind, without any library required, except Forge.<br><br>
-<a href="https://github.com/mindcubr/Forge-Hammers/releases/tag/3.0.1-alpha"><img src="https://img.shields.io/badge/-download_latest-blue?style=for-the-badge&logo=flipboard"></img></a>
+<a href="https://github.com/mindcubr/Forge-Hammers/releases/tag/1.7.10-3.0.2a"><img src="https://img.shields.io/badge/-download_latest-blue?style=for-the-badge&logo=flipboard"></img></a>
 <a href="http://mindev.biz/projects/Forge-Hammers/docs/"><img src="https://img.shields.io/badge/-javadocs-red?style=for-the-badge&logo=java"></img></a>
 
 <br><br>
