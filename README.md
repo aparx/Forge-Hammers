@@ -13,7 +13,7 @@ is made with independence in mind, without any library required, except Forge.<b
 *quality but made with performance in mind. The code is pretty basic and does not offer a high reusability.*
 
 <br><br>
-![image](https://user-images.githubusercontent.com/47287352/112938929-e44f7a80-912a-11eb-9773-81b44697800a.png)
+![image](https://user-images.githubusercontent.com/47287352/113494211-92ba3d80-94e6-11eb-9dfc-5dad47879f8d.png)
 
 ## Hammers
 ### What is a "Hammer"?<br>
