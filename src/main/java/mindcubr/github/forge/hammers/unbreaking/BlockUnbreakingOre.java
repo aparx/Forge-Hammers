@@ -5,7 +5,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import mindcubr.github.forge.hammers.HammerElement;
 import mindcubr.github.forge.hammers.HammersMod;
 import mindcubr.github.forge.hammers.Reference;
-import mindcubr.github.forge.hammers.hook.HammersHook;
 import mindcubr.github.forge.hammers.item.ItemUnbreakingIngot;
 import mindcubr.github.forge.hammers.register.HammerItems;
 import net.minecraft.block.Block;
@@ -17,7 +16,6 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * The <b>Unbreaking Ore</b> is an ore, that can be used for several
@@ -66,20 +64,14 @@ public final class BlockUnbreakingOre extends Block implements HammerElement {
      * @param y        the horizontal tridi-position y of the drop location
      * @param z        the horizontal tridi-position z of the drop location
      * @param metadata the meta data of the broke block
-     * @param fortune  the possible fortune effect, that has an impact on the
+     * @param fortune  the possible fortune effect, that has <em>no</em> impact on the
      *                 drop amount
      * @return a data structure list containing every item drop for this
      * particular call.
      */
     @Override
     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
-        Random random = ThreadLocalRandom.current();
-        ItemStack[] drops = new ItemStack[fortune + 1];
-        int quantity = quantityDropped(metadata, fortune, random);
-        for (int i = 0; i < quantity; i++) {
-            drops[i] = new ItemStack(this);
-        }
-        return Lists.newArrayList(drops);
+        return Lists.newArrayList(new ItemStack(this));
     }
 
     /**
@@ -95,8 +87,7 @@ public final class BlockUnbreakingOre extends Block implements HammerElement {
     @Override
     public Item getItemDropped(int meta, Random random, int fortune) {
         //Get quantity and return the new stack
-        int quantity = quantityDropped(meta, fortune, random);
-        return new ItemStack(this, quantity).getItem();
+        return new ItemStack(this, 1).getItem();
     }
 
     /**
@@ -109,7 +100,7 @@ public final class BlockUnbreakingOre extends Block implements HammerElement {
      */
     @Override
     public int quantityDroppedWithBonus(int fortune, Random random) {
-        return HammersHook.randomize(random, fortune + 1);
+        return 1;
     }
 
     /**

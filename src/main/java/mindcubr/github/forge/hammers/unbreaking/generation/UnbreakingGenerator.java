@@ -31,7 +31,7 @@ public class UnbreakingGenerator implements IWorldGenerator {
      * @apiNote This value might vary on chunk generation,
      * as multiple randomized processes occur and operate
      */
-    private int maxSpawnRate = 15;
+    private int maxSpawnRate = 10;
 
     /**
      * The maximum amount of ores pro chunk possible.
