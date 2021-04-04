@@ -371,7 +371,7 @@ public class ItemHammerTool extends ItemPickaxe implements HammerElement {
     public Object getRecipeRepresentative() {
         //Check if tool material is unbreaking material, return ingots
         if (toolMaterial == HammerItems.UNBREAKING_MATERIAL)
-            return HammerItems.UNBREAKING_INGOT;
+            return HammerItems.unbreakingIngot;
 
         //Check for existing materials
         switch (toolMaterial) {

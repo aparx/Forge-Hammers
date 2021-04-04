@@ -1,6 +1,7 @@
 package mindcubr.github.forge.hammers.unbreaking;
 
 import com.google.common.collect.Lists;
+import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import mindcubr.github.forge.hammers.HammerElement;
 import mindcubr.github.forge.hammers.HammersMod;
@@ -42,7 +43,7 @@ public final class BlockUnbreakingOre extends Block implements HammerElement {
     @Override
     public void registerRecipe() {
         //Smelting recipe for this to become ingots
-        GameRegistry.addSmelting(this, new ItemStack(HammerItems.UNBREAKING_INGOT), 2.0F);
+        GameRegistry.addSmelting(this, new ItemStack(HammerItems.unbreakingIngot), 2.0F);
     }
 
     /**

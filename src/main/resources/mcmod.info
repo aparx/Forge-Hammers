@@ -11,8 +11,6 @@
   "credits": "FML",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": [
-    "Forge"
-  ]
+  "dependencies": ["Forge"]
 }
 ]

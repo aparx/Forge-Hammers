@@ -15,7 +15,7 @@ import org.apache.commons.lang3.Validate;
 
 /**
  * The unbreaking handler is the actual recipe register for any element
- * that is surrounded with {@link HammerItems#UNBREAKING_INGOT unbreaking ingots},
+ * that is surrounded with {@link HammerItems#unbreakingIngot unbreaking ingots},
  * within any crafting inventory with size greater or equal to <b>nine</b>.
  * In other words, this handler is actually registering foreign and third party
  * breakable items and stacks to be Unbreaking-applicable.
@@ -87,7 +87,7 @@ public class UnbreakingHandler {
                     }
 
                     //Check item for unbreaking ingot, ow return false
-                    if (item != HammerItems.UNBREAKING_INGOT)
+                    if (item != HammerItems.unbreakingIngot)
                         return false;
 
                 }

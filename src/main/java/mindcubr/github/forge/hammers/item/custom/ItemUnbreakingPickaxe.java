@@ -37,7 +37,7 @@ public class ItemUnbreakingPickaxe extends ItemPickaxe implements HammerElement 
         ItemStack output = new ItemStack(this);
         HammersHook.ItemHook.setUnbreakable(output, true);
         GameRegistry.addRecipe(output, "UUU", " S ", " S ", 'U',
-                HammerItems.UNBREAKING_INGOT, 'S', Items.stick);
+                HammerItems.unbreakingIngot, 'S', Items.stick);
         setMaxDamage(-1);
 
     }

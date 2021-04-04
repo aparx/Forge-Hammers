@@ -31,7 +31,7 @@ public class UnbreakingGenerator implements IWorldGenerator {
      * @apiNote This value might vary on chunk generation,
      * as multiple randomized processes occur and operate
      */
-    private int maxSpawnRate = 10;
+    private int maxSpawnRate = 9;
 
     /**
      * The maximum amount of ores pro chunk possible.
@@ -54,7 +54,7 @@ public class UnbreakingGenerator implements IWorldGenerator {
      */
     private int maxVeinRadius = 4;
 
-    private int maxHeight = 20;
+    private int maxHeight = 25;
 
     private int minHeight = 5;
 

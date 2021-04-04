@@ -51,7 +51,7 @@ public class ItemUnbreakingSword extends ItemSword implements HammerElement {
         ItemStack output = new ItemStack(this);
         HammersHook.ItemHook.setUnbreakable(output, true);
         GameRegistry.addRecipe(output, " U ", " U ", " S ", 'U',
-                HammerItems.UNBREAKING_INGOT, 'S', Items.stick);
+                HammerItems.unbreakingIngot, 'S', Items.stick);
 
     }
 

@@ -43,21 +43,21 @@ public class HammerItems extends Register<HammerElement> {
     public static ItemHammerLevel[] itemHammerLevels = new ItemHammerLevel[ItemHammerLevel.MAX_LEVEL];
 
     /**
-     * The unbreaking material, related to the {@link #UNBREAKING_INGOT}.
+     * The unbreaking material, related to the {@link #unbreakingIngot}.
      */
     public static Item.ToolMaterial UNBREAKING_MATERIAL = ItemUnbreakingIngot.registerMaterial();
 
-    public static final ItemUnbreakingIngot UNBREAKING_INGOT = new ItemUnbreakingIngot();
+    public static ItemUnbreakingIngot unbreakingIngot;
 
-    public static final ItemUnbreakingAxe UNBREAKING_AXE = new ItemUnbreakingAxe();
+    public static ItemUnbreakingAxe unbreakingAxe;
 
-    public static final ItemUnbreakingPickaxe UNBREAKING_PICKAXE = new ItemUnbreakingPickaxe();
+    public static ItemUnbreakingPickaxe unbreakingPickaxe;
 
-    public static final ItemUnbreakingHoe UNBREAKING_HOE = new ItemUnbreakingHoe();
+    public static ItemUnbreakingHoe unbreakingHoe;
 
-    public static final ItemUnbreakingShovel UNBREAKING_SPADE = new ItemUnbreakingShovel();
+    public static ItemUnbreakingShovel unbreakingSpade;
 
-    public static final ItemUnbreakingSword UNBREAKING_SWORD = new ItemUnbreakingSword();
+    public static ItemUnbreakingSword unbreakingSword;
 
     /**
      * Creates a private repository of the register.
@@ -67,29 +67,15 @@ public class HammerItems extends Register<HammerElement> {
     }
 
     /**
-     * @since 2.0.0-alpha
+     * Loads and initializes this items.
      */
-    static {
-        //Iterate all declared fields of the container
-        for (Field field : HammerItems.class.getDeclaredFields()) {
-            int modifier = field.getModifiers();
-            if (!Modifier.isStatic(modifier)
-                    || !Modifier.isFinal(modifier))
-                continue;
-
-            //Check if the field type is an hammer element to be registered
-            Class<?> type = field.getType();
-            if (!HammerElement.class.isAssignableFrom(type))
-                continue;
-
-            //Register value if possible
-            try {
-                HammerItems.SINGLETON.register((HammerElement) field.get(null));
-            } catch (IllegalAccessException exception) {
-                //Rethrow exception
-                throw new RuntimeException(exception);
-            }
-        }
+    public final void load() {
+        register(unbreakingIngot = new ItemUnbreakingIngot());
+        register(unbreakingAxe = new ItemUnbreakingAxe());
+        register(unbreakingPickaxe = new ItemUnbreakingPickaxe());
+        register(unbreakingHoe = new ItemUnbreakingHoe());
+        register(unbreakingSpade = new ItemUnbreakingShovel());
+        register(unbreakingSword = new ItemUnbreakingSword());
     }
 
     /**

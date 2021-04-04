@@ -39,7 +39,7 @@ public class ItemUnbreakingShovel extends ItemSpade implements HammerElement {
         ItemStack output = new ItemStack(this);
         HammersHook.ItemHook.setUnbreakable(output, true);
         GameRegistry.addRecipe(output, " U ", " S ", " S ", 'U',
-                HammerItems.UNBREAKING_INGOT, 'S', Items.stick);
+                HammerItems.unbreakingIngot, 'S', Items.stick);
 
     }
 

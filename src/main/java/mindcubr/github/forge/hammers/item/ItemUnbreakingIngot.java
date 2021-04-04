@@ -33,7 +33,7 @@ public class ItemUnbreakingIngot extends Item implements HammerElement {
      */
     @Override
     public void registerRecipe() {
-        GameRegistry.addRecipe(new ItemStack(this), "ONO", "NON", "ONO",
+        GameRegistry.addRecipe(new ItemStack(this, 2), "ONO", "NON", "ONO",
                 'N', Items.nether_star, 'O', Blocks.obsidian);
     }
 

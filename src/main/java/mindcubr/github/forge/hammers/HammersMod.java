@@ -73,6 +73,7 @@ public class HammersMod {
      */
     @Mod.EventHandler
     public void preInit(@Nonnull FMLPreInitializationEvent event) {
+        HammerItems.SINGLETON.load();
         registerLevels();   //Level registration first
         registerHammers();  //Tool registration second
         registerBlocks();   //Block registration third
